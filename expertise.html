@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expertise — Safety Critical Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ─── BIO SECTION ─────────────────────────────────────────── */
+.bio-section { background: var(--white); }
+
+.bio-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
+}
+
+.bio-text p {
+  font-size: 17px; color: var(--ink-2); line-height: 1.85;
+  font-weight: 300; margin-bottom: 20px;
+}
+.bio-text p strong { color: var(--ink); font-weight: 500; }
+
+.bio-quote {
+  font-family: var(--serif); font-size: 22px; font-style: italic;
+  color: var(--ink); line-height: 1.55;
+  border-left: 3px solid var(--red); padding-left: 24px;
+  margin: 36px 0;
+}
+
+.bio-byline {
+  margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--rule);
+  display: flex; gap: 20px; align-items: flex-start;
+}
+
+.bio-byline-text {}
+.bio-name {
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink);
+  margin-bottom: 4px;
+}
+.bio-meta {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-3); line-height: 1.7;
+}
+
+.bio-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.bio-link {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border: 1px solid var(--rule); padding: 6px 12px; border-radius: 2px;
+  color: var(--ink-2); text-decoration: none; transition: all 0.15s;
+}
+.bio-link:hover { border-color: var(--red); color: var(--red); }
+
+/* experience timeline */
+.exp-timeline { display: flex; flex-direction: column; gap: 0; }
+
+.exp-entry {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 20px; padding: 28px 0; border-top: 1px solid var(--rule);
+  transition: none;
+}
+.exp-entry:first-child { border-top: none; padding-top: 0; }
+
+.exp-year {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-3); padding-top: 4px; line-height: 1.4;
+}
+
+.exp-detail {}
+.exp-org {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 5px;
+}
+.exp-role { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.exp-body { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 14px; font-weight: 300; }
+
+.exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.exp-tag {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  border: 1px solid var(--rule); padding: 3px 8px;
+  border-radius: 2px; color: var(--ink-3);
+}
+
+.award-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 10px;
+  background: var(--red-lt);
+  border: 1px solid rgba(200,39,45,0.2);
+  color: var(--red);
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 2px;
+}
+
+/* ─── AWARDS BAND ─────────────────────────────────────────── */
+.awards-band { background: var(--ink); padding: 80px 40px; }
+
+.awards-inner { max-width: 1140px; margin: 0 auto; }
+
+.awards-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px;
+}
+
+.award-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07); border-radius: 4px;
+  padding: 28px; transition: border-color 0.2s;
+}
+.award-card:hover { border-color: rgba(200,39,45,0.35); }
+
+.award-icon {
+  font-size: 28px; margin-bottom: 16px; display: block;
+}
+
+.award-org {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 8px;
+}
+.award-name { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 10px; line-height: 1.2; }
+.award-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.65; }
+
+/* ─── SKILLS SECTION ──────────────────────────────────────── */
+.skills-section { background: var(--bg); padding: 80px 40px; }
+.skills-inner { max-width: 1140px; margin: 0 auto; }
+
+.skills-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px;
+}
+
+.skill-col {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 4px; padding: 28px;
+}
+
+.skill-col-title {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 16px;
+}
+
+.skill-list { display: flex; flex-direction: column; gap: 8px; }
+
+.skill-item {
+  font-size: 14px; color: var(--ink-2); line-height: 1.4;
+  padding: 8px 12px; background: var(--bg);
+  border-radius: 2px; border-left: 2px solid var(--rule);
+}
+
+/* ─── WHY IT MATTERS ──────────────────────────────────────── */
+.credibility-band {
+  background: var(--red-lt);
+  border-top: 1px solid rgba(200,39,45,0.12);
+  border-bottom: 1px solid rgba(200,39,45,0.12);
+  padding: 72px 40px;
+}
+
+.cred-inner {
+  max-width: 1140px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+
+.cred-left h2 {
+  font-family: var(--serif); font-size: clamp(28px,3vw,40px);
+  font-weight: 400; color: var(--ink); margin-bottom: 20px; line-height: 1.2;
+}
+.cred-left p { font-size: 15px; color: var(--ink-2); line-height: 1.8; font-weight: 300; margin-bottom: 16px; }
+
+.cred-items { display: flex; flex-direction: column; gap: 12px; }
+
+.cred-item {
+  background: var(--white); border: 1px solid rgba(200,39,45,0.1);
+  border-radius: 4px; padding: 18px 22px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.cred-bullet { color: var(--red); font-size: 16px; flex-shrink: 0; }
+.cred-text { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+.cred-text strong { color: var(--ink); font-weight: 500; }
+
+@media (max-width: 880px) {
+  .bio-grid { grid-template-columns: 1fr; gap: 40px; }
+  .awards-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .cred-inner { grid-template-columns: 1fr; gap: 36px; }
+  .awards-band, .skills-section { padding: 60px 24px; }
+  .credibility-band { padding: 56px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="global-nav">
+  <a href="index.html" class="gn-wordmark">
+    <svg class="gn-icon" viewBox="0 0 26 26" fill="none">
+      <rect x="1" y="1" width="24" height="24" rx="2" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+      <line x1="6" y1="13" x2="20" y2="13" stroke="#C8272D" stroke-width="1.5"/>
+      <line x1="13" y1="6" x2="13" y2="20" stroke="#C8272D" stroke-width="1.5"/>
+      <circle cx="13" cy="13" r="2.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+    </svg>
+    <span class="gn-text"><em>Safety Critical</em> Labs</span>
+  </a>
+  <ul class="gn-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="expertise.html" class="active">Expertise</a></li>
+    <li><a href="markets.html">Markets</a></li>
+    <li><a href="contact.html" class="gn-cta">Get Certified</a></li>
+  </ul>
+</nav>
+
+<div class="page-shell">
+
+<div class="inner-hero">
+  <div class="inner-hero-inner">
+    <div>
+      <div class="inner-hero-breadcrumb">
+        <a href="index.html">Safety Critical Labs</a>
+        <span>/</span> Expertise
+      </div>
+      <h1>Built from<br>inside the<br><em>operational<br>environment.</em></h1>
+    </div>
+    <p class="inner-hero-lead">
+      The SCL framework wasn't adapted from a generic AI governance document. It was built by someone who spent years inside NASA writing the first AI certification requirements for human-rated spacecraft &mdash; requirements that are now part of NASA's governing software standard.
+    </p>
+  </div>
+</div>
+
+<!-- BIO + TIMELINE -->
+<section class="page-section bio-section">
+  <div class="section-inner">
+    <div class="bio-grid">
+      <div class="bio-text">
+        <div class="section-eyebrow">Founder</div>
+        <h2 class="section-title">Kevin J. Williams</h2>
+        <p>
+          Kevin is a software engineer, AI researcher, and the founder of Safety Critical Labs. His work at NASA Johnson Space Center, through Barrios Technology, produced the <strong>first AI certification requirements for human-rated spacecraft</strong> &mdash; requirements that directly shaped NPR 7150.2D, the governing standard for human spaceflight software across Artemis and commercial crew programs.
+        </p>
+        <p>
+          That work earned the <strong>NASA Silver Bear Award</strong> &mdash; recognition given for exceptional contribution to human spaceflight programs. Kevin didn't study AI certification from the outside. He was in the room where the requirements were written.
+        </p>
+        <p>
+          Before NASA, Kevin led a <strong>20-person materials engineering lab at Ford Motor Company</strong>, where he deployed deep learning for automated quality decisions in electric motor manufacturing &mdash; reducing manual inspection by approximately 90% and earning Ford's Technical Excellence Award. That experience of applying AI to production systems with real quality and safety consequences is the lens through which Safety Critical Labs approaches every assessment.
+        </p>
+
+        <div class="bio-quote">
+          "I didn't start with AI governance theory. I started with the question of what happens when an AI system is wrong at the wrong moment &mdash; and worked backward to what a certifiable standard needs to say."
+        </div>
+
+        <div class="bio-byline">
+          <div class="bio-byline-text">
+            <div class="bio-name">Kevin J. Williams</div>
+            <div class="bio-meta">
+              Founder &middot; Safety Critical Labs<br>
+              M.S. Artificial Intelligence, University of Michigan (Expected 2026)<br>
+              B.S. Mechanical Engineering, University of Michigan<br>
+              ORCID: 0009-0002-3308-3415
+            </div>
+          </div>
+        </div>
+        <div class="bio-links">
+          <a href="https://kevinjwilliams.com" class="bio-link" target="_blank">Personal site &rarr;</a>
+          <a href="https://github.com/kevinjohnwilliams" class="bio-link" target="_blank">GitHub &rarr;</a>
+          <a href="https://orcid.org/0009-0002-3308-3415" class="bio-link" target="_blank">ORCID &rarr;</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-eyebrow">Experience</div>
+        <div class="exp-timeline">
+          <div class="exp-entry fade-up">
+            <div class="exp-year">2025&ndash;<br>Present</div>
+            <div class="exp-detail">
+              <div class="exp-org">Safety Critical Labs</div>
+              <div class="exp-role">Founder &amp; Lead Assessor</div>
+              <div class="exp-body">Founded Safety Critical Labs to take the AI certification work developed at NASA and make it available to every domain where AI failure has safety consequences. Developing assessment methodology, evidence package standards, and the institutional infrastructure for a formal AI certification authority.</div>
+              <div class="exp-tags">
+                <span class="exp-tag">AI Certification</span>
+                <span class="exp-tag">Framework Development</span>
+                <span class="exp-tag">Assessment Methodology</span>
+              </div>
+            </div>
+          </div>
+          <div class="exp-entry fade-up">
+            <div class="exp-year">2025&ndash;<br>Present</div>
+            <div class="exp-detail">
+              <div class="exp-org">NASA JSC &middot; Barrios Technology</div>
+              <div class="exp-role">Software Engineer, Human Spaceflight</div>
+              <div class="exp-body">Architecting Cortex &mdash; an enterprise platform replacing scattered SharePoint workflows for human spaceflight operations. Intelligent automation pipelines and cross-platform applications for JSC mission support teams.</div>
+              <div class="exp-tags">
+                <span class="exp-tag">Django</span>
+                <span class="exp-tag">Python</span>
+                <span class="exp-tag">Flutter</span>
+                <span class="exp-tag">Spaceflight Ops</span>
+              </div>
+            </div>
+          </div>
+          <div class="exp-entry fade-up">
+            <div class="exp-year">2023&ndash;<br>2025</div>
+            <div class="exp-detail">
+              <div class="exp-org">NASA Johnson Space Center &middot; Barrios Technology</div>
+              <div class="exp-role">AI System Engineer, Human Spaceflight</div>
+              <div class="exp-body">Pioneered AI certification frameworks for human-rated spacecraft. Developed requirements integrated into NPR 7150.2D, spanning Artemis program elements and commercial crew vehicles. Focus on requirements traceability, governance architecture, and V&amp;V methodology for AI-specific failure modes including bias, drift, hallucination, and out-of-distribution behavior.</div>
+              <div class="exp-tags">
+                <span class="exp-tag">NPR 7150.2D</span>
+                <span class="exp-tag">AI Safety</span>
+                <span class="exp-tag">V&amp;V</span>
+                <span class="exp-tag">Human Spaceflight</span>
+                <span class="exp-tag">Artemis</span>
+                <span class="exp-tag">Commercial Crew</span>
+              </div>
+              <div class="award-pill">&#9733; NASA Silver Bear Award &mdash; AI Certification for Human-Rated Systems</div>
+            </div>
+          </div>
+          <div class="exp-entry fade-up">
+            <div class="exp-year">2022&ndash;<br>2023</div>
+            <div class="exp-detail">
+              <div class="exp-org">Ford Motor Company</div>
+              <div class="exp-role">Engineering Specialist &middot; eMotor Materials Lab</div>
+              <div class="exp-body">Led 20-person materials engineering lab supporting electric motor manufacturing. Deployed deep learning for automated quality decisions in eMotor production, achieving approximately 90% reduction in manual inspection. Established technical standards and cross-functional AI integration across the manufacturing line. Six Sigma Black Belt certified.</div>
+              <div class="exp-tags">
+                <span class="exp-tag">Deep Learning</span>
+                <span class="exp-tag">Manufacturing AI</span>
+                <span class="exp-tag">Quality Systems</span>
+                <span class="exp-tag">Six Sigma Black Belt</span>
+                <span class="exp-tag">Team Leadership</span>
+              </div>
+              <div class="award-pill">&#9733; Ford Technical Excellence Award &mdash; Deep Learning Quality Systems</div>
+            </div>
+          </div>
+          <div class="exp-entry fade-up">
+            <div class="exp-year">2012&ndash;<br>2017</div>
+            <div class="exp-detail">
+              <div class="exp-org">Hyundai-Kia &middot; GM &middot; Quaker Chemicals</div>
+              <div class="exp-role">Materials &amp; Chemical Technician</div>
+              <div class="exp-body">Metallurgical analysis and quality testing across automotive manufacturing environments. Built GM's Flint Engine metallurgical lab from scratch. Foundation in materials science, quality systems, and manufacturing operations that informs the practical, deployment-first approach of Safety Critical Labs.</div>
+              <div class="exp-tags">
+                <span class="exp-tag">Metallurgy</span>
+                <span class="exp-tag">Quality Systems</span>
+                <span class="exp-tag">Automotive Manufacturing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<div class="awards-band">
+  <div class="awards-inner">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.3)"><span style="display:inline-block;width:14px;height:1px;background:rgba(255,255,255,0.3);margin-right:10px;vertical-align:middle;"></span>Recognition</div>
+    <h2 class="section-title" style="color:#fff;">Awards &amp; credentials</h2>
+    <div class="awards-grid">
+      <div class="award-card fade-up">
+        <span class="award-icon">&#127775;</span>
+        <div class="award-org">NASA Johnson Space Center</div>
+        <div class="award-name">NASA Silver Bear Award</div>
+        <div class="award-desc">Awarded for exceptional contribution to human spaceflight programs &mdash; specifically for the development of AI certification requirements for human-rated spacecraft. The framework that became Safety Critical Labs was born from this work.</div>
+      </div>
+      <div class="award-card fade-up">
+        <span class="award-icon">&#127775;</span>
+        <div class="award-org">Ford Motor Company</div>
+        <div class="award-name">Technical Excellence Award</div>
+        <div class="award-desc">Recognized for the deployment of deep learning for automated quality decisions in electric motor manufacturing. Demonstrated AI applied at scale to real production systems with measurable quality and safety consequences.</div>
+      </div>
+      <div class="award-card fade-up">
+        <span class="award-icon">&#128196;</span>
+        <div class="award-org">University of Michigan &middot; 2023</div>
+        <div class="award-name">Peer-Reviewed Publication</div>
+        <div class="award-desc">Published research on differential pulsed voltammetry of &Delta;9-THC detection, achieving 0.13 &mu;M LOD &mdash; among the lowest recorded for comparable devices. Demonstrates the rigorous quantitative methodology applied to AI certification standards. <a href="https://kevinjwilliams.com/papers/thc-detection.pdf" target="_blank" style="color:rgba(200,39,45,0.7);text-decoration:none;">View paper &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="skills-section">
+  <div class="skills-inner">
+    <div class="section-eyebrow">Technical depth</div>
+    <h2 class="section-title">The toolkit behind<br>the assessments.</h2>
+    <p class="section-lead">Safety Critical Labs assessments are conducted by someone who can read the model architecture, understand the training pipeline, and evaluate the test infrastructure &mdash; not just check boxes against a template.</p>
+    <div class="skills-grid">
+      <div class="skill-col fade-up">
+        <div class="skill-col-title">AI &amp; Machine Learning</div>
+        <div class="skill-list">
+          <div class="skill-item">PyTorch &amp; TensorFlow</div>
+          <div class="skill-item">LLMs, RAG, Transformers</div>
+          <div class="skill-item">Differential privacy</div>
+          <div class="skill-item">AI safety &amp; certification</div>
+          <div class="skill-item">LangChain &amp; vector databases</div>
+          <div class="skill-item">Computer vision</div>
+        </div>
+      </div>
+      <div class="skill-col fade-up">
+        <div class="skill-col-title">Systems &amp; Engineering</div>
+        <div class="skill-list">
+          <div class="skill-item">NASA systems engineering</div>
+          <div class="skill-item">Requirements traceability</div>
+          <div class="skill-item">MBSE &amp; V&amp;V lifecycle</div>
+          <div class="skill-item">Six Sigma Black Belt</div>
+          <div class="skill-item">Cross-functional leadership</div>
+          <div class="skill-item">NPR 7150.2D &amp; DO-178C</div>
+        </div>
+      </div>
+      <div class="skill-col fade-up">
+        <div class="skill-col-title">Software &amp; Infrastructure</div>
+        <div class="skill-list">
+          <div class="skill-item">Python &amp; Django</div>
+          <div class="skill-item">JavaScript &amp; Flutter</div>
+          <div class="skill-item">SQL &amp; PostgreSQL</div>
+          <div class="skill-item">REST APIs &amp; AWS</div>
+          <div class="skill-item">Git &amp; CI/CD</div>
+          <div class="skill-item">Agile &amp; systems engineering</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY THIS MATTERS FOR YOU -->
+<div class="credibility-band">
+  <div class="cred-inner">
+    <div class="cred-left">
+      <div class="section-eyebrow" style="color:rgba(200,39,45,0.6)"><span style="display:inline-block;width:14px;height:1px;background:rgba(200,39,45,0.5);margin-right:10px;vertical-align:middle;"></span>Why it matters</div>
+      <h2>Authority transfers<br>from person to institution.</h2>
+      <p>
+        Safety Critical Labs is at an early stage where authority rests on the founder's direct credentials &mdash; NPR 7150.2D, the Silver Bear Award, NASA JSC, Ford Motor Company. That's enough to support the first customers.
+      </p>
+      <p>
+        The goal is to transfer that credibility from the person to the institution: through an advisory board of domain experts, formal publication of the framework, regulatory engagement, and ultimately accreditation through ANAB or A2LA under ISO/IEC 17065.
+      </p>
+    </div>
+    <div class="cred-items">
+      <div class="cred-item fade-up">
+        <span class="cred-bullet">&#9670;</span>
+        <span class="cred-text"><strong>Domain-first methodology.</strong> Requirements developed from inside the operational environment &mdash; not adapted from a governance template by someone who has never worked in safety-critical systems.</span>
+      </div>
+      <div class="cred-item fade-up">
+        <span class="cred-bullet">&#9670;</span>
+        <span class="cred-text"><strong>Published standard.</strong> Framework v1.0 is on GitHub with a citable DOI. The assessor who wrote the framework is the assessor conducting the certification.</span>
+      </div>
+      <div class="cred-item fade-up">
+        <span class="cred-bullet">&#9670;</span>
+        <span class="cred-text"><strong>Regulatory record.</strong> Engaging with FAA, FDA, and DoD AI policy processes as they develop. First-mover presence in regulatory records is how standards get adopted.</span>
+      </div>
+      <div class="cred-item fade-up">
+        <span class="cred-bullet">&#9670;</span>
+        <span class="cred-text"><strong>Accreditation path.</strong> ISO/IEC 17065 gap assessment is part of the company roadmap. The long game is a regulatory instrument, not just a credible third party.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM CTA -->
+<section class="page-section" style="background: var(--white);">
+  <div class="section-inner" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
+    <div>
+      <div class="section-eyebrow">Ready to work together?</div>
+      <h2 class="section-title" style="margin-bottom:0;">Start with a conversation.</h2>
+    </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-solid">Get in touch</a>
+      <a href="process.html" class="btn btn-outline">How certification works</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer class="site-footer">
+  <a href="index.html" class="footer-wordmark">
+    <svg width="22" height="22" viewBox="0 0 26 26" fill="none">
+      <rect x="1" y="1" width="24" height="24" rx="2" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+      <line x1="6" y1="13" x2="20" y2="13" stroke="#C8272D" stroke-width="1.5"/>
+      <line x1="13" y1="6" x2="13" y2="20" stroke="#C8272D" stroke-width="1.5"/>
+      <circle cx="13" cy="13" r="2.5" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+    </svg>
+    <span style="font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-left:8px;"><span style="color:rgba(200,39,45,0.5)">Safety Critical</span> Labs</span>
+  </a>
+  <ul class="footer-links">
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="expertise.html">Expertise</a></li>
+    <li><a href="markets.html">Markets</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-meta">Framework v1.0 &middot; Est. 2025<br>safetycriticallabs.io</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 70); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

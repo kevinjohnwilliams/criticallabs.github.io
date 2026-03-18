@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.svg">
+<meta name="theme-color" content="#111110">
+<meta name="description" content="How SCL certification works. A three phase assessment process with independent review and a formal determination record.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Process — Safety Critical Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── PROCESS PHASES ──────────────────────────────────────── */
+.phases-layout {
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: 0; align-items: start;
+}
+
+/* sticky phase nav */
+.phase-nav {
+  position: sticky; top: 72px;
+  padding-right: 40px;
+}
+
+.phase-nav-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 16px 0;
+  border-left: 2px solid var(--rule);
+  padding-left: 20px; margin-left: 12px;
+  cursor: pointer; text-decoration: none;
+  transition: border-color 0.2s;
+}
+
+.phase-nav-item:hover { border-color: var(--red); }
+.phase-nav-item.selected { border-color: var(--red); }
+
+.pni-num {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink-3); flex-shrink: 0; padding-top: 1px;
+  transition: color 0.2s;
+}
+.phase-nav-item.selected .pni-num,
+.phase-nav-item:hover .pni-num { color: var(--red); }
+
+.pni-title {
+  font-size: 14px; font-weight: 500; color: var(--ink-2); line-height: 1.3;
+  transition: color 0.2s;
+}
+.phase-nav-item.selected .pni-title,
+.phase-nav-item:hover .pni-title { color: var(--ink); }
+
+/* phases detail */
+.phases-detail { display: flex; flex-direction: column; gap: 0; }
+
+.phase-block {
+  padding: 48px 0; border-top: 1px solid var(--rule);
+}
+.phase-block:first-child { border-top: none; padding-top: 0; }
+
+.phase-header {
+  display: flex; gap: 20px; align-items: flex-start; margin-bottom: 24px;
+}
+
+.phase-num-badge {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--ink); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 13px; font-weight: 500;
+  flex-shrink: 0;
+}
+
+.phase-title-block { flex: 1; }
+
+.phase-title {
+  font-size: 22px; font-weight: 600; color: var(--ink);
+  margin-bottom: 4px; line-height: 1.2;
+}
+
+.phase-subtitle {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+}
+
+.phase-body {
+  font-size: 16px; color: var(--ink-2); line-height: 1.8;
+  font-weight: 300; margin-bottom: 24px;
+}
+
+.phase-checklist { display: flex; flex-direction: column; gap: 8px; }
+
+.check-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 14px 18px;
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 3px;
+}
+.check-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red); flex-shrink: 0; margin-top: 6px;
+}
+.check-text { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+.check-text strong { color: var(--ink); font-weight: 500; }
+
+/* ─── CERT WHAT IT SAYS ───────────────────────────────────── */
+.cert-section { background: var(--ink); padding: 80px 40px; }
+
+.cert-inner { max-width: 1140px; margin: 0 auto; }
+
+.cert-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+  margin-top: 48px;
+}
+
+.cert-says { display: flex; flex-direction: column; gap: 10px; }
+
+.cert-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 3px; padding: 18px 22px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+
+.cert-check {
+  color: #4CAF50; font-size: 14px; flex-shrink: 0; padding-top: 2px;
+}
+.cert-x { color: rgba(255,255,255,0.25); font-size: 14px; flex-shrink: 0; padding-top: 2px; }
+
+.cert-item-text {
+  font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.55;
+}
+.cert-item-text strong { color: rgba(255,255,255,0.9); font-weight: 500; }
+
+.cert-sample {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px; padding: 28px;
+  font-family: var(--mono); font-size: 12px; line-height: 1.9;
+}
+
+.cert-sample-header {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 14px; margin-bottom: 16px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.cert-sample-title {
+  font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+}
+.cert-sample-badge {
+  background: rgba(76,175,80,0.15); border: 1px solid rgba(76,175,80,0.3);
+  color: #81C784; font-size: 9px; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 2px;
+}
+
+.cert-line { color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+.cert-line em { color: rgba(255,255,255,0.7); font-style: normal; }
+.cert-line .cert-key { color: var(--red); }
+
+/* ─── SURVEILLANCE ────────────────────────────────────────── */
+.surveillance-section { background: var(--red-lt); padding: 64px 40px; border-top: 1px solid rgba(200,39,45,0.12); }
+
+.surv-inner {
+  max-width: 1140px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+
+.surv-left h2 { font-family: var(--serif); font-size: clamp(28px,3vw,40px); font-weight:400; color: var(--ink); margin-bottom: 16px; line-height: 1.2; }
+.surv-left p { font-size: 15px; color: var(--ink-2); line-height:1.8; font-weight:300; margin-bottom:16px; }
+
+.surv-cards { display: flex; flex-direction: column; gap: 10px; }
+
+.surv-card {
+  background: var(--white);
+  border: 1px solid rgba(200,39,45,0.12); border-radius: 4px;
+  padding: 18px 22px;
+  display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: start;
+}
+
+.surv-tier {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--red);
+}
+.surv-desc { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+.surv-desc strong { color: var(--ink); }
+
+@media (max-width: 880px) {
+  .phases-layout { grid-template-columns: 1fr; }
+  .phase-nav { display: none; }
+  .cert-section { padding: 60px 24px; }
+  .cert-grid { grid-template-columns: 1fr; gap: 32px; }
+  .surv-inner { grid-template-columns: 1fr; gap: 32px; }
+  .surveillance-section { padding: 56px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="global-nav">
+  <a href="index.html" class="gn-wordmark">
+    <svg class="gn-icon" viewBox="0 0 26 26" fill="none">
+      <rect x="1" y="1" width="24" height="24" rx="2" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+      <line x1="6" y1="13" x2="20" y2="13" stroke="#C8272D" stroke-width="1.5"/>
+      <line x1="13" y1="6" x2="13" y2="20" stroke="#C8272D" stroke-width="1.5"/>
+      <circle cx="13" cy="13" r="2.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+    </svg>
+    <span class="gn-text"><em>Safety Critical</em> Labs</span>
+  </a>
+  <ul class="gn-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="process.html" class="active">Process</a></li>
+    <li><a href="expertise.html">Expertise</a></li>
+    <li><a href="markets.html">Markets</a></li>
+    <li><a href="contact.html" class="gn-cta">Get Certified</a></li>
+  </ul>
+</nav>
+
+<div class="page-shell">
+
+<div class="inner-hero">
+  <div class="inner-hero-inner">
+    <div>
+      <div class="inner-hero-breadcrumb">
+        <a href="index.html">Safety Critical Labs</a>
+        <span>/</span> Certification Process
+      </div>
+      <h1>From assessment<br>to <em>formal<br>determination.</em></h1>
+    </div>
+    <p class="inner-hero-lead">
+      A four-phase process that produces a formal determination &mdash; not a recommendation, not a risk score &mdash; that your AI system was assessed against a defined standard. The language matters. The rigor behind it matters more.
+    </p>
+  </div>
+</div>
+
+<!-- PHASES -->
+<section class="page-section" style="background: var(--bg);">
+  <div class="section-inner">
+    <div class="section-eyebrow">Four phases</div>
+    <div class="phases-layout">
+      <div class="phase-nav">
+        <a href="#phase1" class="phase-nav-item selected">
+          <span class="pni-num">01</span>
+          <span class="pni-title">Applicability determination</span>
+        </a>
+        <a href="#phase2" class="phase-nav-item">
+          <span class="pni-num">02</span>
+          <span class="pni-title">Evidence package review</span>
+        </a>
+        <a href="#phase3" class="phase-nav-item">
+          <span class="pni-num">03</span>
+          <span class="pni-title">Technical assessment</span>
+        </a>
+        <a href="#phase4" class="phase-nav-item">
+          <span class="pni-num">04</span>
+          <span class="pni-title">Certificate issuance</span>
+        </a>
+      </div>
+
+      <div class="phases-detail">
+        <div class="phase-block" id="phase1">
+          <div class="phase-header">
+            <div class="phase-num-badge">01</div>
+            <div class="phase-title-block">
+              <div class="phase-title">Applicability determination</div>
+              <div class="phase-subtitle">Scope &middot; Classification &middot; Tailoring</div>
+            </div>
+          </div>
+          <p class="phase-body">
+            Before evidence is reviewed or any technical assessment begins, we establish exactly what is being assessed and at which level. Applicability determination is the phase that defines scope &mdash; and it cannot be skipped or combined with evidence review without undermining the integrity of the determination.
+          </p>
+          <div class="phase-checklist">
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>System boundary definition</strong> &mdash; What components of the AI system are within scope? What interfaces with out-of-scope systems require explicit boundary documentation?</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Classification assignment</strong> &mdash; Is this system Safety-Critical, Mission-Critical, or Mission Support? Classification drives which requirement sets (AI-1 through AI-9) are applicable and at what depth.</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Tailoring rationale</strong> &mdash; Where do operational constraints require tailoring of standard requirements? Every tailoring decision is documented with an explicit rationale that becomes part of the certification record.</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Applicability determination document</strong> &mdash; Formal output of Phase 1. Establishes the assessment scope in writing before any evidence is submitted. Client signs off before Phase 2 begins.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-block" id="phase2">
+          <div class="phase-header">
+            <div class="phase-num-badge">02</div>
+            <div class="phase-title-block">
+              <div class="phase-title">Evidence package review</div>
+              <div class="phase-subtitle">Documentation &middot; Test reports &middot; Verification matrices</div>
+            </div>
+          </div>
+          <p class="phase-body">
+            The client submits their evidence package against the applicable requirement set. Our team reviews each submission against specific framework requirements &mdash; with documented findings, not general observations. Every finding is traceable to a requirement number, a specific criterion, and a pass/fail disposition.
+          </p>
+          <div class="phase-checklist">
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Documentation review</strong> &mdash; Architecture documentation, model cards, training data documentation, validation reports, and operational procedures. Reviewed against each applicable AI-1 through AI-9 requirement.</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Test report analysis</strong> &mdash; ML test coverage results, bias evaluation reports, OOD detection test results, adversarial robustness test outcomes. Assessed against framework criteria, not general best practices.</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Verification matrix review</strong> &mdash; Requirements traceability from system requirements to test evidence. Every AI requirement must have a corresponding verification method and documented test result.</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Evidence package review report</strong> &mdash; Formal output. Documents open items, requests for additional evidence, and preliminary findings. Client has opportunity to address open items before Phase 3.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-block" id="phase3">
+          <div class="phase-header">
+            <div class="phase-num-badge">03</div>
+            <div class="phase-title-block">
+              <div class="phase-title">Technical assessment</div>
+              <div class="phase-subtitle">Structured audit &middot; Findings &middot; Remediation paths</div>
+            </div>
+          </div>
+          <p class="phase-body">
+            The structured audit of your AI system against the framework requirements. Where evidence review examined documentation, technical assessment examines the system itself &mdash; its architecture, its test infrastructure, and the operational validity of its verification claims.
+          </p>
+          <div class="phase-checklist">
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>System walkthrough</strong> &mdash; Technical review of architecture decisions against framework requirements. Focus on AI-specific failure mode coverage, not general software quality.</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Test infrastructure review</strong> &mdash; Assessment of the test environment used to generate evidence. Test infrastructure that cannot reproduce results doesn't support a determination.</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Finding grading</strong> &mdash; Each finding is graded Pass, Conditional Pass (with defined remediation), or Fail. Grading rationale is documented against specific requirement criteria, not assessor judgment.</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Remediation paths</strong> &mdash; For Conditional Pass findings, a defined remediation path with specific acceptance criteria is provided. Remediation is verified before certificate issuance &mdash; it is not taken on faith.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-block" id="phase4">
+          <div class="phase-header">
+            <div class="phase-num-badge">04</div>
+            <div class="phase-title-block">
+              <div class="phase-title">Certificate issuance</div>
+              <div class="phase-subtitle">Formal determination &middot; Classification level &middot; Surveillance schedule</div>
+            </div>
+          </div>
+          <p class="phase-body">
+            A formal determination document stating what was assessed, what was found, and what is required to maintain certificate validity. The certificate is not an endorsement. It is a documented record of a rigorous assessment against a published standard.
+          </p>
+          <div class="phase-checklist">
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Certificate document</strong> &mdash; States: system assessed, framework version, classification level, requirement sets assessed, findings summary, and date of determination.</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Surveillance schedule</strong> &mdash; All certificates include a surveillance audit schedule. Safety-Critical systems: annual. Mission-Critical systems: biennial. Certificates without surveillance schedules do not reflect the technical reality of AI system behavior.</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Assessment record</strong> &mdash; Full documentation package retained by SCL as part of the certification record. Available for regulatory review. Supports future surveillance audits and re-assessments.</span>
+            </div>
+            <div class="check-item fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Revalidation triggers</strong> &mdash; Defined conditions under which the certificate requires re-assessment outside the surveillance schedule &mdash; including model updates, significant operational environment changes, and defined drift thresholds.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT THE CERT SAYS -->
+<div class="cert-section">
+  <div class="cert-inner">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.3)"><span style="display:inline-block;width:14px;height:1px;background:rgba(255,255,255,0.3);margin-right:10px;vertical-align:middle;"></span>The certificate</div>
+    <h2 class="section-title" style="color:#fff;">What a determination says.<br><em>And what it doesn't.</em></h2>
+    <div class="cert-grid">
+      <div>
+        <p style="font-size:15px;color:rgba(255,255,255,0.45);line-height:1.8;font-weight:300;margin-bottom:24px;">
+          A Safety Critical Labs certificate is a formal determination &mdash; exactly the way a UL listing works. UL doesn't say a product is safe. It says the product was tested against a defined standard and met the requirements.
+        </p>
+        <div class="cert-says">
+          <div class="cert-item">
+            <span class="cert-check">&#10003;</span>
+            <span class="cert-item-text"><strong>This system was assessed</strong> against the SCL AI Requirements Framework, version 1.0</span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-check">&#10003;</span>
+            <span class="cert-item-text"><strong>At the Safety-Critical classification level</strong>, with tailoring documented in Annex A</span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-check">&#10003;</span>
+            <span class="cert-item-text"><strong>Requirement sets AI-1 through AI-9 were assessed</strong> with findings as documented</span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-check">&#10003;</span>
+            <span class="cert-item-text"><strong>Certificate valid as of [date]</strong>, subject to annual surveillance audit</span>
+          </div>
+          <div class="cert-item" style="opacity:0.5;">
+            <span class="cert-x">&#10007;</span>
+            <span class="cert-item-text"><strong>Does not claim</strong> this system is safe</span>
+          </div>
+          <div class="cert-item" style="opacity:0.5;">
+            <span class="cert-x">&#10007;</span>
+            <span class="cert-item-text"><strong>Does not claim</strong> this system will not fail</span>
+          </div>
+          <div class="cert-item" style="opacity:0.5;">
+            <span class="cert-x">&#10007;</span>
+            <span class="cert-item-text"><strong>Does not constitute</strong> approval for any specific regulatory purpose</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px;">Sample certificate structure</p>
+        <div class="cert-sample">
+          <div class="cert-sample-header">
+            <span class="cert-sample-title">SCL Certification Record</span>
+            <span class="cert-sample-badge">Certified</span>
+          </div>
+          <div class="cert-line"><span class="cert-key">CERT-ID</span>: <em>CL-2025-SC-0001</em></div>
+          <div class="cert-line"><span class="cert-key">SYSTEM</span>: <em>[AI System Name &amp; Version]</em></div>
+          <div class="cert-line"><span class="cert-key">OPERATOR</span>: <em>[Organization]</em></div>
+          <div class="cert-line"><span class="cert-key">FRAMEWORK</span>: <em>SCL AI Req. Framework v1.0</em></div>
+          <div class="cert-line"><span class="cert-key">CLASS</span>: <em>Safety-Critical</em></div>
+          <div class="cert-line"><span class="cert-key">REQ-SETS</span>: <em>AI-1, AI-2, AI-3, AI-4, AI-5, AI-6, AI-7, AI-8, AI-9</em></div>
+          <div class="cert-line"><span class="cert-key">DATE</span>: <em>2025-06-15</em></div>
+          <div class="cert-line"><span class="cert-key">VALID-THRU</span>: <em>2026-06-15 (surveillance)</em></div>
+          <div class="cert-line"><span class="cert-key">ASSESSOR</span>: <em>K.J. Williams, SCL</em></div>
+          <div class="cert-line"><span class="cert-key">STATUS</span>: <em style="color:#81C784;">ALL REQUIREMENTS MET</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SURVEILLANCE -->
+<div class="surveillance-section">
+  <div class="surv-inner">
+    <div class="surv-left">
+      <div class="section-eyebrow" style="color:rgba(200,39,45,0.6)"><span style="display:inline-block;width:14px;height:1px;background:rgba(200,39,45,0.5);margin-right:10px;vertical-align:middle;"></span>Surveillance</div>
+      <h2>Certification is not<br>a one-time event.</h2>
+      <p>AI systems drift. A certificate issued at deployment is not a certificate valid at month six. Safety Critical Labs builds continuous validation requirements into every assessment &mdash; because the technical standard requires it, and because it is the only honest position.</p>
+      <p>Surveillance audits are not optional add-ons. They are structural to the certification. A certificate without a surveillance schedule does not reflect the operational reality of an AI system in use.</p>
+      <div style="margin-top: 24px;">
+        <a href="contact.html" class="btn btn-solid">Begin your assessment</a>
+      </div>
+    </div>
+    <div class="surv-cards">
+      <div class="surv-card fade-up">
+        <span class="surv-tier">Safety-Critical</span>
+        <span class="surv-desc"><strong>Annual surveillance audit.</strong> Full re-assessment of drift metrics, OOD detection logs, and operational performance data. Revalidation of any requirement sets with defined drift thresholds breached during the year.</span>
+      </div>
+      <div class="surv-card fade-up">
+        <span class="surv-tier">Mission-Critical</span>
+        <span class="surv-desc"><strong>Biennial surveillance audit.</strong> Focused re-assessment of continuous validation records (AI-4), post-deployment performance data, and any model updates made since the original certification.</span>
+      </div>
+      <div class="surv-card fade-up">
+        <span class="surv-tier">Triggered re-assessment</span>
+        <span class="surv-desc"><strong>Required for any of:</strong> model version change, significant operational environment change, defined drift threshold breach, or incident involving an AI-assisted decision with safety consequences.</span>
+      </div>
+      <div class="surv-card fade-up">
+        <span class="surv-tier">Readiness assessment</span>
+        <span class="surv-desc"><strong>Pre-certification option.</strong> Organizations not ready to certify can request a readiness assessment to understand their current standing against the framework before committing to a full certification cycle.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM CTA -->
+<section class="page-section" style="background: var(--white);">
+  <div class="section-inner" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
+    <div>
+      <div class="section-eyebrow">Next steps</div>
+      <h2 class="section-title" style="margin-bottom:0;">Ready to begin? Start with a conversation.</h2>
+    </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-solid">Get in touch</a>
+      <a href="framework.html" class="btn btn-outline">Review the framework</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <a href="index.html" class="footer-wordmark">
+    <svg width="22" height="22" viewBox="0 0 26 26" fill="none">
+      <rect x="1" y="1" width="24" height="24" rx="2" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+      <line x1="6" y1="13" x2="20" y2="13" stroke="#C8272D" stroke-width="1.5"/>
+      <line x1="13" y1="6" x2="13" y2="20" stroke="#C8272D" stroke-width="1.5"/>
+      <circle cx="13" cy="13" r="2.5" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+    </svg>
+    <span style="font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-left:8px;"><span style="color:rgba(200,39,45,0.5)">Safety Critical</span> Labs</span>
+  </a>
+  <ul class="footer-links">
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="expertise.html">Expertise</a></li>
+    <li><a href="markets.html">Markets</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-meta">Framework v1.0 &middot; Est. 2025<br>safetycriticallabs.io</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Phase nav active state
+const phaseLinks = document.querySelectorAll('.phase-nav-item');
+phaseLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    phaseLinks.forEach(l => l.classList.remove('selected'));
+    link.classList.add('selected');
+  });
+});
+</script>
+</body>
+</html>

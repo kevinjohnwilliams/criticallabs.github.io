@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Expertise — Safety Critical Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -596,28 +595,34 @@ h2.section-title em { font-style: italic; color: var(--red); }
 }
 /* ═══ PAGE STYLES ═══ */
 
+/* ─── TEAM MODEL ──────────────────────────────────────────── */
 .team-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
   margin-top: 48px;
 }
+
 .team-col {
   background: var(--white);
   border: 1px solid var(--rule);
   padding: 32px 28px;
 }
+
 .team-col-num {
   font-family: var(--mono); font-size: 10px;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--red); margin-bottom: 12px;
 }
+
 .team-col-role {
   font-size: 18px; font-weight: 600; color: var(--ink);
   margin-bottom: 12px; line-height: 1.2;
 }
+
 .team-col-desc {
   font-size: 14px; color: var(--ink-2); line-height: 1.7;
   font-weight: 300; margin-bottom: 16px;
 }
+
 .team-col-qual {
   font-family: var(--mono); font-size: 9px;
   letter-spacing: 0.08em; text-transform: uppercase;
@@ -625,43 +630,156 @@ h2.section-title em { font-style: italic; color: var(--red); }
   border-top: 1px solid var(--rule); padding-top: 14px;
 }
 
+/* ─── LEAD ASSESSOR ───────────────────────────────────────── */
+.assessor-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
+}
+
+.assessor-text p {
+  font-size: 16px; color: var(--ink-2); line-height: 1.85;
+  font-weight: 300; margin-bottom: 20px;
+}
+.assessor-text p strong { color: var(--ink); font-weight: 500; }
+
+.assessor-byline {
+  margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--rule);
+}
+.assessor-name {
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink);
+  margin-bottom: 6px;
+}
+.assessor-meta {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-3); line-height: 1.8;
+}
+
+.assessor-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.assessor-link {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border: 1px solid var(--rule); padding: 6px 12px; border-radius: 2px;
+  color: var(--ink-2); text-decoration: none; transition: all 0.15s;
+}
+.assessor-link:hover { border-color: var(--red); color: var(--red); }
+
+/* experience timeline */
+.exp-timeline { display: flex; flex-direction: column; }
+
+.exp-entry {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 20px; padding: 28px 0; border-top: 1px solid var(--rule);
+}
+.exp-entry:first-child { border-top: none; padding-top: 0; }
+
+.exp-year {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-3); padding-top: 4px; line-height: 1.4;
+}
+
+.exp-org {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 5px;
+}
+.exp-role { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.exp-body { font-size: 13px; color: var(--ink-2); line-height: 1.7; font-weight: 300; margin-bottom: 10px; }
+
+.exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.exp-tag {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  border: 1px solid var(--rule); padding: 3px 8px;
+  border-radius: 2px; color: var(--ink-3);
+}
+
+.award-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 10px;
+  background: var(--red-lt); border: 1px solid rgba(200,39,45,0.2);
+  color: var(--red); font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 2px;
+}
+
+/* ─── RECOGNITION ─────────────────────────────────────────── */
+.recognition-band { background: var(--ink); padding: 80px 40px; }
+.recognition-inner { max-width: 1140px; margin: 0 auto; }
+
+.recognition-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px;
+}
+
+.rec-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07); border-radius: 4px;
+  padding: 28px; transition: border-color 0.2s;
+}
+.rec-card:hover { border-color: rgba(200,39,45,0.35); }
+
+.rec-icon { font-size: 28px; line-height: 1; }
+
+.rec-org {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 8px;
+}
+.rec-name { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 10px; line-height: 1.2; }
+.rec-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.65; }
+
+/* ─── DOMAIN COVERAGE ─────────────────────────────────────── */
 .domain-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
   margin-top: 48px;
 }
+
 .domain-card {
   background: var(--white); border: 1px solid var(--rule);
   border-radius: 4px; padding: 24px;
 }
+
+.domain-icon {
+  font-size: 22px; margin-bottom: 14px; display: block;
+}
+
 .domain-title {
   font-size: 15px; font-weight: 600; color: var(--ink);
   margin-bottom: 8px; line-height: 1.2;
 }
+
 .domain-regs {
   font-family: var(--mono); font-size: 9px;
   letter-spacing: 0.07em; text-transform: uppercase;
   color: var(--red); margin-bottom: 10px; line-height: 1.6;
 }
+
 .domain-desc {
   font-size: 13px; color: var(--ink-2); line-height: 1.65; font-weight: 300;
 }
 
+/* ─── CREDIBILITY BAND ────────────────────────────────────── */
 .credibility-band {
   background: var(--red-lt);
   border-top: 1px solid rgba(200,39,45,0.12);
   border-bottom: 1px solid rgba(200,39,45,0.12);
   padding: 72px 40px;
 }
+
 .cred-inner {
   max-width: 1140px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
 }
+
 .cred-left h2 {
   font-family: var(--serif); font-size: clamp(28px,3vw,40px);
   font-weight: 400; color: var(--ink); margin-bottom: 20px; line-height: 1.2;
 }
 .cred-left p { font-size: 15px; color: var(--ink-2); line-height: 1.8; font-weight: 300; margin-bottom: 16px; }
+
 .cred-items { display: flex; flex-direction: column; gap: 12px; }
+
 .cred-item {
   background: var(--white); border: 1px solid rgba(200,39,45,0.1);
   border-radius: 4px; padding: 18px 22px;
@@ -673,12 +791,15 @@ h2.section-title em { font-style: italic; color: var(--red); }
 
 @media (max-width: 880px) {
   .team-grid { grid-template-columns: 1fr; }
+  .assessor-grid { grid-template-columns: 1fr; gap: 40px; }
+  .recognition-grid { grid-template-columns: 1fr; }
   .domain-grid { grid-template-columns: 1fr 1fr; }
   .cred-inner { grid-template-columns: 1fr; gap: 36px; }
-  .credibility-band { padding: 60px 24px; }
+  .recognition-band, .credibility-band { padding: 60px 24px; }
 }
 @media (max-width: 580px) {
   .domain-grid { grid-template-columns: 1fr; }
+  .rec-card { grid-template-columns: 1fr; gap: 12px; }
 }
 </style>
 </head>
@@ -706,6 +827,7 @@ h2.section-title em { font-style: italic; color: var(--red); }
 
 <div class="page-shell">
 
+<!-- HERO -->
 <div class="inner-hero">
   <div class="inner-hero-inner">
     <div>
@@ -797,11 +919,11 @@ h2.section-title em { font-style: italic; color: var(--red); }
   </div>
 </section>
 
-<!-- THE INSTITUTION -->
+<!-- WHY THIS MATTERS -->
 <div class="credibility-band">
   <div class="cred-inner">
     <div class="cred-left">
-      <div class="section-eyebrow" style="color:rgba(200,39,45,0.6)">The institution</div>
+      <div class="section-eyebrow" style="color:rgba(200,39,45,0.6)"><span style="display:inline-block;width:14px;height:1px;background:rgba(200,39,45,0.5);margin-right:10px;vertical-align:middle;"></span>The institution</div>
       <h2>Built to become<br>a regulatory instrument.</h2>
       <p>
         SCL is not a consulting practice that happens to review AI systems. It is being built as a formal certification authority, with the structure, independence, and transparency that role requires.

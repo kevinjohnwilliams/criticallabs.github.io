@@ -7,20 +7,225 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
 <style>
-/* ─── PROCESS PHASES ──────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   Safety Critical Labs Shared Stylesheet
+   ═══════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F8F8F6;
+  --white:    #FFFFFF;
+  --ink:      #111110;
+  --ink-2:    #484844;
+  --ink-3:    #888884;
+  --red:      #C8272D;
+  --red-dk:   #A01E23;
+  --red-lt:   #F9ECEC;
+  --rule:     #E0E0DC;
+  --serif:    'Instrument Serif', Georgia, serif;
+  --sans:     'IBM Plex Sans', system-ui, sans-serif;
+  --mono:     'IBM Plex Mono', monospace;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* GLOBAL NAV */
+.global-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 56px;
+  background: var(--ink);
+  display: flex; align-items: center;
+  padding: 0 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.gn-wordmark {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: #fff; flex-shrink: 0;
+}
+.gn-icon { width: 26px; height: 26px; }
+.gn-text {
+  font-family: var(--mono); font-size: 12px;
+  font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #fff;
+}
+.gn-text em { color: var(--red); font-style: normal; }
+.gn-links {
+  display: flex; gap: 4px; align-items: center;
+  margin-left: auto; list-style: none;
+}
+.gn-links a {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); text-decoration: none;
+  padding: 6px 12px; border-radius: 2px;
+  transition: color 0.15s, background 0.15s;
+}
+.gn-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.gn-links a.active { color: #fff; }
+.gn-cta {
+  background: var(--red) !important;
+  color: #fff !important;
+  padding: 7px 16px !important;
+  border-radius: 2px;
+  transition: background 0.15s !important;
+  margin-left: 8px;
+}
+.gn-cta:hover { background: var(--red-dk) !important; }
+
+/* PAGE SHELL */
+.page-shell { margin-top: 56px; }
+
+/* INNER PAGE HERO */
+.inner-hero {
+  background: var(--ink);
+  padding: 72px 40px 64px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: relative; overflow: hidden;
+}
+.inner-hero::before { display: none; }
+.inner-hero-inner {
+  max-width: 1140px; margin: 0 auto; position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+}
+.inner-hero-breadcrumb {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.inner-hero-breadcrumb a { color: rgba(255,255,255,0.3); text-decoration: none; }
+.inner-hero-breadcrumb a:hover { color: rgba(255,255,255,0.6); }
+.inner-hero-breadcrumb span { color: rgba(255,255,255,0.15); }
+.inner-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(38px, 4.5vw, 60px);
+  font-weight: 400; line-height: 1.1;
+  color: #fff; letter-spacing: -0.01em;
+}
+.inner-hero h1 em { font-style: italic; color: var(--red); }
+.inner-hero-lead {
+  font-size: 17px; color: rgba(255,255,255,0.5);
+  font-weight: 300; line-height: 1.75;
+  border-left: 2px solid var(--red); padding-left: 20px;
+  align-self: end;
+}
+
+/* SECTION BASE */
+.page-section { padding: 80px 40px; }
+.section-inner { max-width: 1140px; margin: 0 auto; }
+.section-eyebrow {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-eyebrow::before {
+  content: ''; display: inline-block;
+  width: 14px; height: 1px; background: currentColor;
+}
+h2.section-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 400; line-height: 1.15;
+  color: var(--ink); margin-bottom: 16px;
+}
+h2.section-title em { font-style: italic; color: var(--red); }
+.section-lead {
+  font-size: 17px; color: var(--ink-2);
+  font-weight: 300; line-height: 1.75;
+  max-width: 600px; margin-bottom: 48px;
+}
+
+/* BUTTONS */
+.btn {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 12px 24px; border-radius: 2px;
+  text-decoration: none; transition: all 0.15s;
+  display: inline-block; cursor: pointer;
+  border: none;
+}
+.btn-solid { background: var(--ink); color: var(--white); }
+.btn-solid:hover { background: var(--red); }
+.btn-red { background: var(--red); color: #fff; }
+.btn-red:hover { background: var(--red-dk); }
+.btn-outline { border: 1px solid var(--rule); color: var(--ink-2); background: transparent; }
+.btn-outline:hover { border-color: var(--red); color: var(--red); }
+.btn-outline-white { border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); background: transparent; }
+.btn-outline-white:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+/* DIVIDER */
+.rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+/* FADE ANIMATION */
+.fade-up {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* FOOTER */
+.site-footer {
+  background: #0A0A09;
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-wordmark { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.footer-links { display: flex; gap: 20px; list-style: none; }
+.footer-links a {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.55); }
+.footer-meta {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; color: rgba(255,255,255,0.2);
+  text-align: right;
+}
+
+/* NOTE BOX */
+.note-box {
+  padding: 20px 24px;
+  background: var(--white); border: 1px solid var(--rule);
+  border-left: 3px solid var(--red); border-radius: 0 4px 4px 0;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.note-label {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--red); flex-shrink: 0; padding-top: 3px; min-width: 80px;
+}
+.note-text { font-size: 13px; color: var(--ink-2); line-height: 1.65; }
+.note-text strong { color: var(--ink); }
+
+/* ═══════════════════════════════════════════════════════════
+   PROCESS PAGE STYLES
+   ═══════════════════════════════════════════════════════════ */
+
+/* PHASES */
 .phases-layout {
   display: grid; grid-template-columns: 280px 1fr;
   gap: 0; align-items: start;
 }
-
-/* sticky phase nav */
 .phase-nav {
   position: sticky; top: 72px;
   padding-right: 40px;
 }
-
 .phase-nav-item {
   display: flex; gap: 16px; align-items: flex-start;
   padding: 16px 0;
@@ -29,10 +234,8 @@
   cursor: pointer; text-decoration: none;
   transition: border-color 0.2s;
 }
-
 .phase-nav-item:hover { border-color: var(--red); }
 .phase-nav-item.selected { border-color: var(--red); }
-
 .pni-num {
   font-family: var(--mono); font-size: 11px;
   color: var(--ink-3); flex-shrink: 0; padding-top: 1px;
@@ -40,7 +243,6 @@
 }
 .phase-nav-item.selected .pni-num,
 .phase-nav-item:hover .pni-num { color: var(--red); }
-
 .pni-title {
   font-size: 14px; font-weight: 500; color: var(--ink-2); line-height: 1.3;
   transition: color 0.2s;
@@ -48,18 +250,10 @@
 .phase-nav-item.selected .pni-title,
 .phase-nav-item:hover .pni-title { color: var(--ink); }
 
-/* phases detail */
 .phases-detail { display: flex; flex-direction: column; gap: 0; }
-
-.phase-block {
-  padding: 48px 0; border-top: 1px solid var(--rule);
-}
+.phase-block { padding: 48px 0; border-top: 1px solid var(--rule); }
 .phase-block:first-child { border-top: none; padding-top: 0; }
-
-.phase-header {
-  display: flex; gap: 20px; align-items: flex-start; margin-bottom: 24px;
-}
-
+.phase-header { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 24px; }
 .phase-num-badge {
   width: 48px; height: 48px; border-radius: 50%;
   background: var(--ink); color: #fff;
@@ -67,26 +261,14 @@
   font-family: var(--mono); font-size: 13px; font-weight: 500;
   flex-shrink: 0;
 }
-
 .phase-title-block { flex: 1; }
-
-.phase-title {
-  font-size: 22px; font-weight: 600; color: var(--ink);
-  margin-bottom: 4px; line-height: 1.2;
-}
-
+.phase-title { font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
 .phase-subtitle {
   font-family: var(--mono); font-size: 10px;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
 }
-
-.phase-body {
-  font-size: 16px; color: var(--ink-2); line-height: 1.8;
-  font-weight: 300; margin-bottom: 24px;
-}
-
+.phase-body { font-size: 16px; color: var(--ink-2); line-height: 1.8; font-weight: 300; margin-bottom: 24px; }
 .phase-checklist { display: flex; flex-direction: column; gap: 8px; }
-
 .check-item {
   display: flex; gap: 12px; align-items: flex-start;
   padding: 14px 18px;
@@ -100,45 +282,38 @@
 .check-text { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
 .check-text strong { color: var(--ink); font-weight: 500; }
 
-/* ─── TIMELINE STRIP ──────────────────────────────────────── */
+/* risk score check item variant */
+.check-item.check-item-score {
+  background: var(--red-lt);
+  border-color: rgba(200,39,45,0.2);
+}
+.check-item.check-item-score .check-dot { background: var(--red); }
+.check-item.check-item-score .check-text strong { color: var(--red-dk); }
+
+/* TIMELINE STRIP */
 .timeline-section { background: var(--ink); padding: 80px 40px; }
 .timeline-inner { max-width: 1140px; margin: 0 auto; }
-
-.timeline-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 2px; margin-top: 48px;
-}
-
+.timeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px; }
 .tl-block {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
   padding: 28px 24px;
   position: relative;
 }
-
 .tl-phase {
   font-family: var(--mono); font-size: 9px;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--red); margin-bottom: 10px;
 }
-
-.tl-title {
-  font-size: 15px; font-weight: 500;
-  color: #fff; margin-bottom: 8px; line-height: 1.3;
-}
-
+.tl-title { font-size: 15px; font-weight: 500; color: #fff; margin-bottom: 8px; line-height: 1.3; }
 .tl-duration {
   font-family: var(--mono); font-size: 11px;
   color: rgba(255,255,255,0.35); margin-bottom: 14px;
   padding-bottom: 14px;
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
-
-.tl-output {
-  font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6;
-}
+.tl-output { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
 .tl-output strong { color: rgba(255,255,255,0.7); font-weight: 500; }
-
 .tl-total {
   margin-top: 20px;
   display: flex; align-items: center; gap: 16px;
@@ -147,66 +322,99 @@
   border: 1px solid rgba(200,39,45,0.2);
   border-radius: 3px;
 }
-.tl-total-num {
-  font-family: var(--serif); font-size: 36px;
-  color: #fff; line-height: 1; flex-shrink: 0;
-}
+.tl-total-num { font-family: var(--serif); font-size: 36px; color: #fff; line-height: 1; flex-shrink: 0; }
 .tl-total-num em { color: var(--red); font-style: normal; }
-.tl-total-label {
-  font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6;
-}
+.tl-total-label { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
 .tl-total-label strong { color: rgba(255,255,255,0.7); font-weight: 500; }
 
-/* ─── EVIDENCE PACKAGE ────────────────────────────────────── */
+/* WHAT YOU GET SECTION */
+.outputs-section { background: var(--ink); padding: 80px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
+.outputs-inner { max-width: 1140px; margin: 0 auto; }
+.outputs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+
+.output-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 32px 28px;
+}
+.output-card.output-card-primary {
+  background: rgba(200,39,45,0.07);
+  border-color: rgba(200,39,45,0.25);
+}
+.output-card-label {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 14px;
+}
+.output-card-title { font-size: 18px; font-weight: 500; color: #fff; margin-bottom: 12px; line-height: 1.3; }
+.output-card-desc { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.7; }
+.output-card-desc strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+
+.score-display {
+  display: flex; align-items: baseline; gap: 10px;
+  margin: 20px 0 16px;
+}
+.score-num {
+  font-family: var(--serif); font-size: 52px;
+  color: #fff; line-height: 1;
+}
+.score-meta { display: flex; flex-direction: column; gap: 4px; }
+.score-label {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--red);
+}
+.score-sub { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.4; }
+
+.outputs-callout {
+  margin-top: 24px;
+  padding: 24px 28px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 3px;
+  display: grid; grid-template-columns: 1fr 2fr; gap: 28px; align-items: center;
+}
+.oc-label {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); line-height: 1.6;
+}
+.oc-text { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+.oc-text strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+/* EVIDENCE PACKAGE */
 .evidence-section { background: var(--white); padding: 80px 40px; }
 .evidence-inner { max-width: 1140px; margin: 0 auto; }
-
-.evidence-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
-  align-items: start; margin-top: 48px;
-}
-
-.ev-intro {
-  font-size: 16px; color: var(--ink-2); line-height: 1.8;
-  font-weight: 300; margin-bottom: 24px;
-}
-
+.evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-top: 48px; }
+.ev-intro { font-size: 16px; color: var(--ink-2); line-height: 1.8; font-weight: 300; margin-bottom: 24px; }
 .ev-note {
   padding: 16px 20px;
   background: var(--bg); border-left: 3px solid var(--red);
   font-size: 13px; color: var(--ink-2); line-height: 1.65;
 }
 .ev-note strong { color: var(--ink); }
-
 .ev-list { display: flex; flex-direction: column; gap: 8px; }
-
 .ev-item {
   background: var(--bg); border: 1px solid var(--rule);
   border-radius: 3px; padding: 16px 20px;
   display: grid; grid-template-columns: 160px 1fr; gap: 16px;
 }
-
 .ev-item-label {
   font-family: var(--mono); font-size: 9px;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--red); padding-top: 2px;
 }
-
-.ev-item-desc {
-  font-size: 13px; color: var(--ink-2); line-height: 1.55;
-}
+.ev-item-desc { font-size: 13px; color: var(--ink-2); line-height: 1.55; }
 .ev-item-desc strong { color: var(--ink); }
 
-/* ─── INLINE SURVEILLANCE ─────────────────────────────────── */
+/* INLINE SURVEILLANCE */
 .surv-inline { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
-
 .surv-inline-card {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 3px; padding: 14px 18px;
   display: grid; grid-template-columns: 140px 1fr; gap: 14px;
 }
-
 .si-tier {
   font-family: var(--mono); font-size: 9px;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--red);
@@ -215,15 +423,26 @@
 .si-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.55; }
 .si-desc strong { color: rgba(255,255,255,0.75); font-weight: 500; }
 
+/* RESPONSIVE */
 @media (max-width: 880px) {
+  .global-nav { padding: 0 20px; }
+  .gn-links { display: none; }
+  .inner-hero { padding: 60px 24px 48px; }
+  .inner-hero-inner { grid-template-columns: 1fr; gap: 24px; }
+  .page-section { padding: 56px 24px; }
   .phases-layout { grid-template-columns: 1fr; }
   .phase-nav { display: none; }
-  .timeline-grid { grid-template-columns: 1fr 1fr; }
   .timeline-section { padding: 60px 24px; }
+  .timeline-grid { grid-template-columns: 1fr 1fr; }
+  .outputs-section { padding: 60px 24px; }
+  .outputs-grid { grid-template-columns: 1fr; }
+  .outputs-callout { grid-template-columns: 1fr; gap: 12px; }
   .evidence-section { padding: 60px 24px; }
   .evidence-grid { grid-template-columns: 1fr; gap: 32px; }
   .ev-item { grid-template-columns: 1fr; gap: 4px; }
   .surv-inline-card { grid-template-columns: 1fr; gap: 6px; }
+  .site-footer { grid-template-columns: 1fr; gap: 16px; }
+  .footer-meta { text-align: left; }
 }
 @media (max-width: 580px) {
   .timeline-grid { grid-template-columns: 1fr; }
@@ -255,6 +474,7 @@
 
 <div class="page-shell">
 
+<!-- HERO -->
 <div class="inner-hero">
   <div class="inner-hero-inner">
     <div>
@@ -262,10 +482,10 @@
         <a href="index.html">Safety Critical Labs</a>
         <span>/</span> Certification Process
       </div>
-      <h1>From assessment<br>to <em>formal<br>determination.</em></h1>
+      <h1>From assessment<br>to <em>two answers<br>you can act on.</em></h1>
     </div>
     <p class="inner-hero-lead">
-      A four-phase process that produces a formal determination &mdash; not a recommendation, not a risk score &mdash; that your AI system was assessed against a defined standard. The language matters. The rigor behind it matters more.
+      A four-phase process that produces a formal certification determination and a quantified risk score. Not a general impression. Not a vendor attestation. A documented, reproducible answer to the question every operator of a safety-critical AI system needs to be able to answer.
     </p>
   </div>
 </div>
@@ -295,6 +515,8 @@
       </div>
 
       <div class="phases-detail">
+
+        <!-- PHASE 1 -->
         <div class="phase-block" id="phase1">
           <div class="phase-header">
             <div class="phase-num-badge">01</div>
@@ -304,28 +526,29 @@
             </div>
           </div>
           <p class="phase-body">
-            Before evidence is reviewed or any technical assessment begins, we establish exactly what is being assessed and at which level. Applicability determination is the phase that defines scope &mdash; and it cannot be skipped or combined with evidence review without undermining the integrity of the determination.
+            Before evidence is reviewed or any technical assessment begins, we establish exactly what is being assessed and at which level. Applicability determination is the phase that defines scope, and it cannot be skipped or combined with evidence review without undermining the integrity of the determination.
           </p>
           <div class="phase-checklist">
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>System boundary definition</strong> &mdash; What components of the AI system are within scope? What interfaces with out-of-scope systems require explicit boundary documentation?</span>
+              <span class="check-text"><strong>System boundary definition:</strong> What components of the AI system are within scope? What interfaces with out-of-scope systems require explicit boundary documentation?</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Classification assignment</strong> &mdash; Is this system Safety-Critical, Mission-Critical, or Mission Support? Classification drives which requirement sets (AI-1 through AI-9) are applicable and at what depth.</span>
+              <span class="check-text"><strong>Classification assignment:</strong> Is this system Safety-Critical, Mission-Critical, or Mission Support? Classification drives which requirement sets (AI-1 through AI-9) are applicable and at what depth.</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Tailoring rationale</strong> &mdash; Where do operational constraints require tailoring of standard requirements? Every tailoring decision is documented with an explicit rationale that becomes part of the certification record.</span>
+              <span class="check-text"><strong>Tailoring rationale:</strong> Where do operational constraints require tailoring of standard requirements? Every tailoring decision is documented with an explicit rationale that becomes part of the certification record.</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Applicability determination document</strong> &mdash; Formal output of Phase 1. Establishes the assessment scope in writing before any evidence is submitted. Client signs off before Phase 2 begins.</span>
+              <span class="check-text"><strong>Applicability determination document:</strong> Formal output of Phase 1. Establishes the assessment scope in writing before any evidence is submitted. Client signs off before Phase 2 begins.</span>
             </div>
           </div>
         </div>
 
+        <!-- PHASE 2 -->
         <div class="phase-block" id="phase2">
           <div class="phase-header">
             <div class="phase-num-badge">02</div>
@@ -335,89 +558,95 @@
             </div>
           </div>
           <p class="phase-body">
-            The client submits their evidence package against the applicable requirement set. Our team reviews each submission against specific framework requirements &mdash; with documented findings, not general observations. Every finding is traceable to a requirement number, a specific criterion, and a pass/fail disposition.
+            The client submits their evidence package against the applicable requirement set. Our team reviews each submission against specific framework requirements with documented findings, not general observations. Every finding is traceable to a requirement number, a specific criterion, and a pass/fail disposition.
           </p>
           <div class="phase-checklist">
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Documentation review</strong> &mdash; Architecture documentation, model cards, training data documentation, validation reports, and operational procedures. Reviewed against each applicable AI-1 through AI-9 requirement.</span>
+              <span class="check-text"><strong>Documentation review:</strong> Architecture documentation, model cards, training data documentation, validation reports, and operational procedures. Reviewed against each applicable AI-1 through AI-9 requirement.</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Test report analysis</strong> &mdash; ML test coverage results, bias evaluation reports, OOD detection test results, adversarial robustness test outcomes. Assessed against framework criteria, not general best practices.</span>
+              <span class="check-text"><strong>Test report analysis:</strong> ML test coverage results, bias evaluation reports, OOD detection test results, adversarial robustness test outcomes. Assessed against framework criteria, not general best practices.</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Verification matrix review</strong> &mdash; Requirements traceability from system requirements to test evidence. Every AI requirement must have a corresponding verification method and documented test result.</span>
+              <span class="check-text"><strong>Verification matrix review:</strong> Requirements traceability from system requirements to test evidence. Every AI requirement must have a corresponding verification method and documented test result.</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Evidence package review report</strong> &mdash; Formal output. Documents open items, requests for additional evidence, and preliminary findings. Client has opportunity to address open items before Phase 3.</span>
+              <span class="check-text"><strong>Evidence package review report:</strong> Formal output. Documents open items, requests for additional evidence, and preliminary findings. Client has opportunity to address open items before Phase 3.</span>
             </div>
           </div>
         </div>
 
+        <!-- PHASE 3 -->
         <div class="phase-block" id="phase3">
           <div class="phase-header">
             <div class="phase-num-badge">03</div>
             <div class="phase-title-block">
               <div class="phase-title">Technical assessment</div>
-              <div class="phase-subtitle">Structured audit &middot; Findings &middot; Remediation paths</div>
+              <div class="phase-subtitle">Structured audit &middot; Findings &middot; Risk score</div>
             </div>
           </div>
           <p class="phase-body">
-            The structured audit of your AI system against the framework requirements. Where evidence review examined documentation, technical assessment examines the system itself &mdash; its architecture, its test infrastructure, and the operational validity of its verification claims.
+            The structured audit of your AI system against the framework requirements. Where evidence review examined documentation, technical assessment examines the system itself: its architecture, its test infrastructure, and the operational validity of its verification claims. This is also the phase where the risk score is calculated.
           </p>
           <div class="phase-checklist">
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>System walkthrough</strong> &mdash; Technical review of architecture decisions against framework requirements. Focus on AI-specific failure mode coverage, not general software quality.</span>
+              <span class="check-text"><strong>System walkthrough:</strong> Technical review of architecture decisions against framework requirements. Focus on AI-specific failure mode coverage, not general software quality.</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Test infrastructure review</strong> &mdash; Assessment of the test environment used to generate evidence. Test infrastructure that cannot reproduce results doesn't support a determination.</span>
+              <span class="check-text"><strong>Test infrastructure review:</strong> Assessment of the test environment used to generate evidence. Test infrastructure that cannot reproduce results does not support a determination.</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Finding grading</strong> &mdash; Each finding is graded Pass, Conditional Pass (with defined remediation), or Fail. Grading rationale is documented against specific requirement criteria, not assessor judgment.</span>
+              <span class="check-text"><strong>Finding grading:</strong> Each finding is graded Pass, Conditional Pass (with defined remediation), or Fail. Grading rationale is documented against specific requirement criteria, not assessor judgment.</span>
+            </div>
+            <div class="check-item check-item-score fade-up">
+              <span class="check-dot"></span>
+              <span class="check-text"><strong>Risk score calculation:</strong> Using a structured consequence-based scoring methodology, the technical assessment produces a quantified risk score for your system. The score reflects assessed failure modes, operational consequences, and the effectiveness of human oversight controls. It is reproducible, documented, and issued with your certificate. A number your leadership, your regulators, and your procurement officers can read.</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Remediation paths</strong> &mdash; For Conditional Pass findings, a defined remediation path with specific acceptance criteria is provided. Remediation is verified before certificate issuance &mdash; it is not taken on faith.</span>
+              <span class="check-text"><strong>Remediation paths:</strong> For Conditional Pass findings, a defined remediation path with specific acceptance criteria is provided. Remediation is verified before certificate issuance.</span>
             </div>
           </div>
         </div>
 
+        <!-- PHASE 4 -->
         <div class="phase-block" id="phase4">
           <div class="phase-header">
             <div class="phase-num-badge">04</div>
             <div class="phase-title-block">
               <div class="phase-title">Certificate issuance</div>
-              <div class="phase-subtitle">Formal determination &middot; Classification level &middot; Surveillance schedule</div>
+              <div class="phase-subtitle">Formal determination &middot; Risk score &middot; Surveillance schedule</div>
             </div>
           </div>
           <p class="phase-body">
-            A formal determination document stating what was assessed, what was found, and what is required to maintain certificate validity. Every assessment produces a Determination Document regardless of outcome. A certificate is issued only when applicable requirements are met.
+            A formal determination document stating what was assessed, what was found, and what is required to maintain certificate validity. Every assessment produces a Determination Document regardless of outcome. A certificate is issued only when applicable requirements are met. Both documents include the risk score.
           </p>
           <div class="phase-checklist">
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Certification Determination Document</strong> &mdash; Issued regardless of outcome. States the system assessed, framework version, classification level, requirement sets, findings summary, and the formal determination: Certified, Conditionally Certified, or Not Certified.</span>
+              <span class="check-text"><strong>Certification Determination Document:</strong> Issued regardless of outcome. States the system assessed, framework version, classification level, requirement sets, findings summary, quantified risk score, and the formal determination: Certified, Conditionally Certified, or Not Certified.</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Certificate (if certified)</strong> &mdash; States system name and version, client organization, SCL framework version, classification level, requirement sets assessed, issue date, validity period, and surveillance due date. The certificate does not state the system is safe. It states the system was assessed against a defined standard and met the applicable requirements at the time of assessment.</span>
+              <span class="check-text"><strong>Certificate (if certified):</strong> States system name and version, client organization, SCL framework version, classification level, requirement sets assessed, risk score, issue date, validity period, and surveillance due date. The certificate does not state the system is safe. It states the system was assessed against a defined standard, met the applicable requirements, and carries a documented risk level at the time of assessment.</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Assessment record retained</strong> &mdash; All documentation from all four phases is retained by SCL for a minimum of 10 years or the life of the certified system. Available for regulatory review.</span>
+              <span class="check-text"><strong>Assessment record retained:</strong> All documentation from all four phases is retained by SCL for a minimum of 10 years or the life of the certified system. Available for regulatory review.</span>
             </div>
             <div class="check-item fade-up">
               <span class="check-dot"></span>
-              <span class="check-text"><strong>Surveillance schedule established</strong> &mdash; Certification is not a one-time event. AI systems change behavior over time. Every certificate includes a structured surveillance schedule.</span>
+              <span class="check-text"><strong>Surveillance schedule established:</strong> Certification is not a one-time event. AI systems change behavior over time. Every certificate includes a structured surveillance schedule.</span>
             </div>
           </div>
-          <div class="surv-inline" style="margin-top:24px;">
+          <div class="surv-inline" style="margin-top:24px; background: var(--ink); border-radius: 3px; padding: 20px;">
             <div class="surv-inline-card fade-up">
               <span class="si-tier">Safety-Critical</span>
               <span class="si-desc"><strong>Annual surveillance audit.</strong> Full re-assessment of drift metrics, OOD detection logs, and operational performance data since certification.</span>
@@ -432,10 +661,49 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
 </section>
+
+<!-- WHAT THE ASSESSMENT PRODUCES -->
+<div class="outputs-section">
+  <div class="outputs-inner">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.3)"><span style="display:inline-block;width:14px;height:1px;background:rgba(255,255,255,0.3);margin-right:10px;vertical-align:middle;"></span>What the assessment produces</div>
+    <h2 class="section-title" style="color:#fff;">Two things most audits<br><em>never give you.</em></h2>
+    <p style="font-size:16px;color:rgba(255,255,255,0.4);font-weight:300;line-height:1.75;max-width:580px;margin-bottom:0;">
+      A certification determination tells you whether your system met the standard. A risk score tells you where it sits on the risk spectrum. Together they give your team something to act on and something to show.
+    </p>
+    <div class="outputs-grid" style="margin-top:40px;">
+      <div class="output-card output-card-primary fade-up">
+        <div class="output-card-label">Risk score</div>
+        <div class="score-display">
+          <div class="score-num">3<span style="color:var(--red);font-size:32px;">L</span></div>
+          <div class="score-meta">
+            <span class="score-label">Quantified risk level</span>
+            <span class="score-sub">Reproducible. Documented.<br>Issued with every certificate.</span>
+          </div>
+        </div>
+        <div class="output-card-desc">A number derived from assessed failure modes, operational consequences, and human oversight effectiveness. <strong>Not a gut check. Not a general impression.</strong> A reproducible score your leadership, your regulators, and your procurement officers can read without needing to interpret a findings report.</div>
+      </div>
+      <div class="output-card fade-up">
+        <div class="output-card-label">Certification determination</div>
+        <div class="output-card-title">Certified, Conditionally Certified, or Not Certified</div>
+        <div class="output-card-desc">A formal determination document issued for every assessment regardless of outcome. States what was assessed, what was found, and what is required to maintain certificate validity. <strong>Not a vendor claim.</strong> A documented determination against a published standard.</div>
+      </div>
+      <div class="output-card fade-up">
+        <div class="output-card-label">Certificate (if certified)</div>
+        <div class="output-card-title">A record built to survive regulatory scrutiny</div>
+        <div class="output-card-desc">System name and version, classification level, requirement sets assessed, quantified risk score, issue date, validity period, and surveillance schedule. <strong>All four phases of assessment documentation retained for a minimum of 10 years.</strong> Available for regulatory review when it is needed.</div>
+      </div>
+    </div>
+    <div class="outputs-callout fade-up">
+      <div class="oc-label">Why both matter</div>
+      <div class="oc-text">Pass/fail tells you the threshold was cleared. The risk score tells you by how much and where the remaining exposure sits. <strong>For a regulator reviewing an AI-assisted system, or a procurement officer evaluating a vendor, the score is the answer the determination alone cannot provide.</strong></div>
+    </div>
+  </div>
+</div>
 
 <!-- TIMELINE -->
 <div class="timeline-section">
@@ -462,13 +730,13 @@
         <div class="tl-phase">Phase 03</div>
         <div class="tl-title">Technical assessment</div>
         <div class="tl-duration">1 week on-site or remote</div>
-        <div class="tl-output"><strong>Output:</strong> Technical Assessment Report with final findings. Major, Minor, and Observation findings graded against specific requirement criteria.</div>
+        <div class="tl-output"><strong>Output:</strong> Technical Assessment Report with final findings graded against specific requirement criteria, plus the quantified risk score derived from the assessment.</div>
       </div>
       <div class="tl-block fade-up">
         <div class="tl-phase">Phase 04</div>
         <div class="tl-title">Determination and issuance</div>
         <div class="tl-duration">1 week</div>
-        <div class="tl-output"><strong>Output:</strong> Certification Determination Document issued regardless of outcome. Certificate issued if applicable requirements are met.</div>
+        <div class="tl-output"><strong>Output:</strong> Certification Determination Document with risk score, issued regardless of outcome. Certificate issued if applicable requirements are met.</div>
       </div>
     </div>
     <div class="tl-total">
@@ -569,7 +837,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Phase nav active state
 const phaseLinks = document.querySelectorAll('.phase-nav-item');
 phaseLinks.forEach(link => {
   link.addEventListener('click', () => {

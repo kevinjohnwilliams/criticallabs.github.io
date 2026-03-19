@@ -3,44 +3,621 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="shortcut icon" href="favicon.svg">
-<meta name="theme-color" content="#111110">
-<meta name="description" content="The assessment team behind every SCL determination. Built on practitioner experience in government and industry AI deployment.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Expertise — Safety Critical Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ═══ SHARED BASE STYLES ═══ */
+/* ═══════════════════════════════════════════════════════════
+   Safety Critical Labs — Shared Stylesheet
+   ═══════════════════════════════════════════════════════════ */
 
-/* ─── TEAM MODEL ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F8F8F6;
+  --white:    #FFFFFF;
+  --ink:      #111110;
+  --ink-2:    #484844;
+  --ink-3:    #888884;
+  --red:      #C8272D;
+  --red-dk:   #A01E23;
+  --red-lt:   #F9ECEC;
+  --rule:     #E0E0DC;
+  --serif:    'Instrument Serif', Georgia, serif;
+  --sans:     'IBM Plex Sans', system-ui, sans-serif;
+  --mono:     'IBM Plex Mono', monospace;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── GLOBAL NAV ──────────────────────────────────────────── */
+.global-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 56px;
+  background: var(--ink);
+  display: flex; align-items: center;
+  padding: 0 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.gn-wordmark {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: #fff; flex-shrink: 0;
+}
+
+.gn-icon { width: 26px; height: 26px; }
+
+.gn-text {
+  font-family: var(--mono); font-size: 12px;
+  font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #fff;
+}
+.gn-text em { color: var(--red); font-style: normal; }
+
+.gn-links {
+  display: flex; gap: 4px; align-items: center;
+  margin-left: auto; list-style: none;
+}
+
+.gn-links a {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); text-decoration: none;
+  padding: 6px 12px; border-radius: 2px;
+  transition: color 0.15s, background 0.15s;
+}
+.gn-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.gn-links a.active { color: #fff; }
+
+.gn-cta {
+  background: var(--red) !important;
+  color: #fff !important;
+  padding: 7px 16px !important;
+  border-radius: 2px;
+  transition: background 0.15s !important;
+  margin-left: 8px;
+}
+.gn-cta:hover { background: var(--red-dk) !important; }
+
+/* ─── PAGE SHELL ──────────────────────────────────────────── */
+.page-shell { margin-top: 56px; }
+
+/* ─── INNER PAGE HERO ─────────────────────────────────────── */
+.inner-hero {
+  background: var(--ink);
+  padding: 72px 40px 64px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: relative; overflow: hidden;
+}
+
+.inner-hero::before {
+  display: none;
+}
+
+.inner-hero-inner {
+  max-width: 1140px; margin: 0 auto; position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+}
+
+.inner-hero-breadcrumb {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.inner-hero-breadcrumb a { color: rgba(255,255,255,0.3); text-decoration: none; }
+.inner-hero-breadcrumb a:hover { color: rgba(255,255,255,0.6); }
+.inner-hero-breadcrumb span { color: rgba(255,255,255,0.15); }
+
+.inner-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(38px, 4.5vw, 60px);
+  font-weight: 400; line-height: 1.1;
+  color: #fff; letter-spacing: -0.01em;
+}
+.inner-hero h1 em { font-style: italic; color: var(--red); }
+
+.inner-hero-lead {
+  font-size: 17px; color: rgba(255,255,255,0.5);
+  font-weight: 300; line-height: 1.75;
+  border-left: 2px solid var(--red); padding-left: 20px;
+  align-self: end;
+}
+
+/* ─── SECTION BASE ────────────────────────────────────────── */
+.page-section { padding: 80px 40px; }
+.section-inner { max-width: 1140px; margin: 0 auto; }
+
+.section-eyebrow {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-eyebrow::before {
+  content: ''; display: inline-block;
+  width: 14px; height: 1px; background: currentColor;
+}
+
+h2.section-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 400; line-height: 1.15;
+  color: var(--ink); margin-bottom: 16px;
+}
+h2.section-title em { font-style: italic; color: var(--red); }
+
+.section-lead {
+  font-size: 17px; color: var(--ink-2);
+  font-weight: 300; line-height: 1.75;
+  max-width: 600px; margin-bottom: 48px;
+}
+
+/* ─── BUTTONS ─────────────────────────────────────────────── */
+.btn {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 12px 24px; border-radius: 2px;
+  text-decoration: none; transition: all 0.15s;
+  display: inline-block; cursor: pointer;
+  border: none;
+}
+.btn-solid { background: var(--ink); color: var(--white); }
+.btn-solid:hover { background: var(--red); }
+.btn-red { background: var(--red); color: #fff; }
+.btn-red:hover { background: var(--red-dk); }
+.btn-outline {
+  border: 1px solid var(--rule); color: var(--ink-2);
+  background: transparent;
+}
+.btn-outline:hover { border-color: var(--red); color: var(--red); }
+.btn-outline-white {
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.6); background: transparent;
+}
+.btn-outline-white:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+.btn-white {
+  background: #fff; color: var(--red);
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 13px 28px; border-radius: 2px;
+  text-decoration: none; transition: all 0.15s;
+  font-weight: 500;
+}
+.btn-white:hover { background: var(--ink); color: #fff; }
+
+.btn-ghost-white {
+  border: 1px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.8);
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 13px 28px; border-radius: 2px;
+  text-decoration: none; transition: all 0.15s;
+}
+.btn-ghost-white:hover { border-color: #fff; color: #fff; }
+
+/* ─── DIVIDER ─────────────────────────────────────────────── */
+.rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+/* ─── FRAMEWORK CARDS ─────────────────────────────────────── */
+.framework-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+
+.req-card {
+  background: var(--white);
+  border: 1px solid var(--rule); border-radius: 4px;
+  padding: 24px;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  cursor: default;
+}
+.req-card:hover {
+  border-color: var(--red);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+}
+
+.req-id {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--red); letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+.req-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; line-height: 1.35; }
+.req-body { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+
+.req-scope {
+  display: inline-block; margin-top: 14px;
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-3); border: 1px solid var(--rule);
+  padding: 3px 8px; border-radius: 2px;
+}
+
+/* ─── FADE ANIMATION ──────────────────────────────────────── */
+.fade-up {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── FOOTER ──────────────────────────────────────────────── */
+.site-footer {
+  background: #0A0A09;
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-wordmark {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+
+.footer-links {
+  display: flex; gap: 20px; list-style: none;
+}
+
+.footer-links a {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.55); }
+
+.footer-meta {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; color: rgba(255,255,255,0.2);
+  text-align: right;
+}
+
+/* ─── NOTE BOX ────────────────────────────────────────────── */
+.note-box {
+  padding: 20px 24px;
+  background: var(--white); border: 1px solid var(--rule);
+  border-left: 3px solid var(--red); border-radius: 0 4px 4px 0;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.note-label {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--red); flex-shrink: 0; padding-top: 3px; min-width: 80px;
+}
+.note-text { font-size: 13px; color: var(--ink-2); line-height: 1.65; }
+.note-text strong { color: var(--ink); }
+
+/* ─── HOME HERO ───────────────────────────────────────────── */
+.home-hero {
+  background: var(--ink);
+  min-height: calc(100vh - 56px);
+  display: flex; align-items: center;
+  padding: 80px 40px;
+  position: relative; overflow: hidden;
+}
+
+.home-hero::before {
+  display: none;
+}
+
+.home-hero-inner {
+  max-width: 1140px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  position: relative; z-index: 1;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--red); }
+
+.home-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(52px, 6vw, 80px);
+  font-weight: 400; line-height: 1.04;
+  color: #fff; letter-spacing: -0.015em;
+  margin-bottom: 32px;
+}
+.home-hero h1 em { font-style: italic; color: var(--red); }
+
+.hero-body {
+  font-size: 18px; color: rgba(255,255,255,0.5);
+  font-weight: 300; line-height: 1.75; margin-bottom: 36px;
+  max-width: 480px;
+}
+
+.hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.hero-right { display: flex; flex-direction: column; gap: 16px; }
+
+.hero-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px; padding: 22px 24px;
+  text-decoration: none; display: block;
+  transition: border-color 0.2s, background 0.2s;
+}
+.hero-card:hover {
+  border-color: rgba(200,39,45,0.45);
+  background: rgba(200,39,45,0.05);
+}
+
+.hc-label {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 6px;
+}
+.hc-title { font-size: 15px; font-weight: 500; color: #fff; margin-bottom: 6px; line-height: 1.3; }
+.hc-body { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.55; }
+
+.hc-arrow {
+  float: right; color: rgba(255,255,255,0.2);
+  font-size: 16px; margin-top: -2px;
+  transition: color 0.15s;
+}
+.hero-card:hover .hc-arrow { color: var(--red); }
+
+/* ─── STATS STRIP ─────────────────────────────────────────── */
+.stats-strip {
+  background: rgba(255,255,255,0.03);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 0 40px;
+}
+
+.stats-inner {
+  max-width: 1140px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+
+.stat-block {
+  padding: 36px 28px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.stat-num {
+  font-family: var(--serif); font-size: 44px;
+  color: #fff; line-height: 1; margin-bottom: 8px;
+}
+.stat-num em { color: var(--red); font-style: normal; }
+
+.stat-label {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); line-height: 1.4;
+}
+
+/* ─── WHAT WE DO ──────────────────────────────────────────── */
+.what-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: start;
+}
+
+.what-body p {
+  font-size: 16px; color: var(--ink-2); line-height: 1.8;
+  font-weight: 300; margin-bottom: 18px;
+}
+.what-body p strong { color: var(--ink); font-weight: 500; }
+
+.analogy-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; }
+
+.atag {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  border: 1px solid var(--rule); border-radius: 2px;
+  padding: 6px 12px; color: var(--ink-3); background: transparent;
+  cursor: default;
+}
+.atag.highlight { color: var(--red); border-color: rgba(200,39,45,0.25); background: var(--red-lt); }
+
+.page-preview-cards { display: flex; flex-direction: column; gap: 12px; }
+
+.ppc {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 4px; padding: 20px 22px;
+  display: flex; gap: 20px; align-items: flex-start;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ppc:hover { border-color: var(--red); transform: translateX(4px); }
+
+.ppc-num {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--red); flex-shrink: 0; padding-top: 2px;
+  min-width: 28px;
+}
+.ppc-body { flex: 1; }
+.ppc-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+.ppc-desc { font-size: 12px; color: var(--ink-3); line-height: 1.55; }
+.ppc-arrow { color: var(--rule); font-size: 14px; flex-shrink: 0; padding-top: 2px; transition: color 0.15s; }
+.ppc:hover .ppc-arrow { color: var(--red); }
+
+/* ─── URGENCY BAND ────────────────────────────────────────── */
+.urgency-band {
+  background: var(--ink);
+  padding: 80px 40px;
+}
+
+.ub-inner {
+  max-width: 1140px; margin: 0 auto;
+}
+
+.ub-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: end; margin-bottom: 48px;
+}
+
+.ub-header .section-eyebrow { color: rgba(255,255,255,0.3); }
+.ub-header .section-eyebrow::before { background: rgba(255,255,255,0.3); }
+.ub-header h2.section-title { color: #fff; }
+
+.ub-lead {
+  font-size: 16px; color: rgba(255,255,255,0.45);
+  font-weight: 300; line-height: 1.75;
+  border-left: 2px solid var(--red); padding-left: 20px;
+  align-self: end;
+}
+
+.ub-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+}
+
+.ub-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 28px 24px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.ub-item:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(200,39,45,0.3);
+}
+
+.ub-std {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 10px;
+}
+.ub-title { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); margin-bottom: 6px; line-height: 1.35; }
+.ub-desc { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.6; }
+
+.ub-cta { margin-top: 40px; display: flex; gap: 12px; }
+
+/* ─── FOUNDER PREVIEW ─────────────────────────────────────── */
+.founder-preview {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+
+.fp-left p {
+  font-size: 16px; color: var(--ink-2); line-height: 1.8;
+  font-weight: 300; margin-bottom: 18px;
+}
+.fp-left p strong { color: var(--ink); font-weight: 500; }
+
+.fp-quote {
+  font-family: var(--serif); font-size: 20px; font-style: italic;
+  color: var(--ink-2); line-height: 1.55;
+  border-left: 2px solid var(--red); padding-left: 20px;
+  margin: 28px 0;
+}
+
+.fp-byline {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+  margin-top: 20px; line-height: 1.7;
+}
+
+.fp-cards { display: flex; flex-direction: column; gap: 12px; }
+
+.fp-card {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 4px; padding: 22px 24px;
+}
+.fp-card-org {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 6px;
+}
+.fp-card-role { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
+.fp-card-desc { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.fp-card-award {
+  display: inline-block; margin-top: 10px;
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  background: var(--red-lt); border: 1px solid rgba(200,39,45,0.2);
+  color: var(--red); padding: 4px 10px; border-radius: 2px;
+}
+
+/* ─── HOME CTA ────────────────────────────────────────────── */
+.home-cta {
+  background: var(--red);
+  padding: 72px 40px;
+  text-align: center;
+}
+
+.home-cta h2 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 3.5vw, 48px);
+  color: #fff; font-weight: 400;
+  margin-bottom: 16px; line-height: 1.15;
+}
+
+.home-cta p {
+  font-size: 17px; color: rgba(255,255,255,0.7);
+  font-weight: 300; max-width: 500px;
+  margin: 0 auto 32px; line-height: 1.7;
+}
+
+.home-cta-row { display: flex; gap: 12px; justify-content: center; }
+
+/* ─── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 880px) {
+  .global-nav { padding: 0 20px; }
+  .gn-links { display: none; }
+  .inner-hero { padding: 60px 24px 48px; }
+  .inner-hero-inner { grid-template-columns: 1fr; gap: 24px; }
+  .page-section { padding: 56px 24px; }
+  .framework-grid { grid-template-columns: 1fr 1fr; }
+  .home-hero { padding: 60px 24px; }
+  .home-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .stats-strip { padding: 0 24px; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .what-grid { grid-template-columns: 1fr; gap: 40px; }
+  .ub-header { grid-template-columns: 1fr; gap: 20px; }
+  .ub-grid { grid-template-columns: 1fr; }
+  .founder-preview { grid-template-columns: 1fr; gap: 40px; }
+  .urgency-band { padding: 60px 24px; }
+  .home-cta { padding: 60px 24px; }
+}
+
+@media (max-width: 580px) {
+  .framework-grid { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .site-footer { grid-template-columns: 1fr; gap: 16px; }
+  .footer-meta { text-align: left; }
+}
+/* ═══ PAGE STYLES ═══ */
+
 .team-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
   margin-top: 48px;
 }
-
 .team-col {
   background: var(--white);
   border: 1px solid var(--rule);
   padding: 32px 28px;
 }
-
 .team-col-num {
   font-family: var(--mono); font-size: 10px;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--red); margin-bottom: 12px;
 }
-
 .team-col-role {
   font-size: 18px; font-weight: 600; color: var(--ink);
   margin-bottom: 12px; line-height: 1.2;
 }
-
 .team-col-desc {
   font-size: 14px; color: var(--ink-2); line-height: 1.7;
   font-weight: 300; margin-bottom: 16px;
 }
-
 .team-col-qual {
   font-family: var(--mono); font-size: 9px;
   letter-spacing: 0.08em; text-transform: uppercase;
@@ -48,177 +625,60 @@
   border-top: 1px solid var(--rule); padding-top: 14px;
 }
 
-/* ─── LEAD ASSESSOR ───────────────────────────────────────── */
-.assessor-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
-}
-
-.assessor-text p {
-  font-size: 16px; color: var(--ink-2); line-height: 1.85;
-  font-weight: 300; margin-bottom: 20px;
-}
-.assessor-text p strong { color: var(--ink); font-weight: 500; }
-
-.assessor-byline {
-  margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--rule);
-}
-.assessor-name {
-  font-family: var(--mono); font-size: 12px; font-weight: 500;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink);
-  margin-bottom: 6px;
-}
-.assessor-meta {
-  font-family: var(--mono); font-size: 10px;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--ink-3); line-height: 1.8;
-}
-
-.assessor-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-.assessor-link {
-  font-family: var(--mono); font-size: 10px;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  border: 1px solid var(--rule); padding: 6px 12px; border-radius: 2px;
-  color: var(--ink-2); text-decoration: none; transition: all 0.15s;
-}
-.assessor-link:hover { border-color: var(--red); color: var(--red); }
-
-/* experience timeline */
-.exp-timeline { display: flex; flex-direction: column; }
-
-.exp-entry {
-  display: grid; grid-template-columns: 80px 1fr;
-  gap: 20px; padding: 28px 0; border-top: 1px solid var(--rule);
-}
-.exp-entry:first-child { border-top: none; padding-top: 0; }
-
-.exp-year {
-  font-family: var(--mono); font-size: 10px;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--ink-3); padding-top: 4px; line-height: 1.4;
-}
-
-.exp-org {
-  font-family: var(--mono); font-size: 10px;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--red); margin-bottom: 5px;
-}
-.exp-role { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
-.exp-body { font-size: 13px; color: var(--ink-2); line-height: 1.7; font-weight: 300; margin-bottom: 10px; }
-
-.exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.exp-tag {
-  font-family: var(--mono); font-size: 9px;
-  letter-spacing: 0.07em; text-transform: uppercase;
-  border: 1px solid var(--rule); padding: 3px 8px;
-  border-radius: 2px; color: var(--ink-3);
-}
-
-.award-pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-top: 10px;
-  background: var(--red-lt); border: 1px solid rgba(200,39,45,0.2);
-  color: var(--red); font-family: var(--mono); font-size: 9px;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 4px 10px; border-radius: 2px;
-}
-
-/* ─── RECOGNITION ─────────────────────────────────────────── */
-.recognition-band { background: var(--ink); padding: 80px 40px; }
-.recognition-inner { max-width: 1140px; margin: 0 auto; }
-
-.recognition-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px;
-}
-
-.rec-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.07); border-radius: 4px;
-  padding: 28px; transition: border-color 0.2s;
-  display: grid; grid-template-columns: 80px 1fr; gap: 20px; align-items: start;
-}
-.rec-card:hover { border-color: rgba(200,39,45,0.35); }
-
-.rec-icon { font-size: 28px; line-height: 1; }
-
-.rec-org {
-  font-family: var(--mono); font-size: 9px;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--red); margin-bottom: 8px;
-}
-.rec-name { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 10px; line-height: 1.2; }
-.rec-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.65; }
-
-/* ─── DOMAIN COVERAGE ─────────────────────────────────────── */
 .domain-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
   margin-top: 48px;
 }
-
 .domain-card {
   background: var(--white); border: 1px solid var(--rule);
   border-radius: 4px; padding: 24px;
 }
-
-.domain-icon {
-  font-size: 22px; margin-bottom: 14px; display: block;
-}
-
 .domain-title {
   font-size: 15px; font-weight: 600; color: var(--ink);
   margin-bottom: 8px; line-height: 1.2;
 }
-
 .domain-regs {
   font-family: var(--mono); font-size: 9px;
   letter-spacing: 0.07em; text-transform: uppercase;
   color: var(--red); margin-bottom: 10px; line-height: 1.6;
 }
-
 .domain-desc {
   font-size: 13px; color: var(--ink-2); line-height: 1.65; font-weight: 300;
 }
 
-/* ─── CREDIBILITY BAND ────────────────────────────────────── */
 .credibility-band {
   background: var(--red-lt);
   border-top: 1px solid rgba(200,39,45,0.12);
   border-bottom: 1px solid rgba(200,39,45,0.12);
   padding: 72px 40px;
 }
-
 .cred-inner {
   max-width: 1140px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
 }
-
 .cred-left h2 {
   font-family: var(--serif); font-size: clamp(28px,3vw,40px);
   font-weight: 400; color: var(--ink); margin-bottom: 20px; line-height: 1.2;
 }
 .cred-left p { font-size: 15px; color: var(--ink-2); line-height: 1.8; font-weight: 300; margin-bottom: 16px; }
-
 .cred-items { display: flex; flex-direction: column; gap: 12px; }
-
 .cred-item {
   background: var(--white); border: 1px solid rgba(200,39,45,0.1);
   border-radius: 4px; padding: 18px 22px;
   display: flex; gap: 16px; align-items: flex-start;
 }
-.cred-bullet { color: var(--red); font-size: 16px; flex-shrink: 0; }
+.cred-bullet { display: inline-block; width: 7px; height: 7px; background: var(--red); border-radius: 1px; flex-shrink: 0; margin-top: 5px; }
 .cred-text { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
 .cred-text strong { color: var(--ink); font-weight: 500; }
 
 @media (max-width: 880px) {
   .team-grid { grid-template-columns: 1fr; }
-  .assessor-grid { grid-template-columns: 1fr; gap: 40px; }
-  .recognition-grid { grid-template-columns: 1fr; }
   .domain-grid { grid-template-columns: 1fr 1fr; }
   .cred-inner { grid-template-columns: 1fr; gap: 36px; }
-  .recognition-band, .credibility-band { padding: 60px 24px; }
+  .credibility-band { padding: 60px 24px; }
 }
 @media (max-width: 580px) {
   .domain-grid { grid-template-columns: 1fr; }
-  .rec-card { grid-template-columns: 1fr; gap: 12px; }
 }
 </style>
 </head>
@@ -246,7 +706,6 @@
 
 <div class="page-shell">
 
-<!-- HERO -->
 <div class="inner-hero">
   <div class="inner-hero-inner">
     <div>
@@ -273,7 +732,7 @@
         <div class="team-col-num">Role 01</div>
         <div class="team-col-role">Lead Assessor</div>
         <div class="team-col-desc">Runs the assessment end to end. Owns the determination recommendation. Signs the Technical Assessment Report. Makes the final finding on every requirement. Independence from the client organization is mandatory.</div>
-        <div class="team-col-qual">Qualification: Domain expertise in AI and ML systems plus safety-critical systems engineering. For the current assessment period, K. Williams serves as Lead Assessor on all engagements.</div>
+        <div class="team-col-qual">Qualification: Domain expertise in AI and ML systems plus safety critical systems engineering. The Lead Assessor maintains full independence from all client organizations on every engagement.</div>
       </div>
       <div class="team-col fade-up">
         <div class="team-col-num">Role 02</div>
@@ -284,165 +743,52 @@
       <div class="team-col fade-up">
         <div class="team-col-num">Role 03</div>
         <div class="team-col-role">Domain Specialist</div>
-        <div class="team-col-desc">Brought in for Phase 3 where the operational domain requires regulatory or technical depth beyond the core framework. Aviation, medical devices, automotive, and defense each carry domain-specific regulatory context that the assessment team reflects.</div>
-        <div class="team-col-qual">Qualification: Domain-specific certification experience in the relevant regulated industry. Engaged per assessment based on the system's operational environment.</div>
+        <div class="team-col-desc">Brought in for Phase 3 where the operational domain requires regulatory or technical depth beyond the core framework. Aviation, medical devices, automotive, and defense each carry domain specific regulatory context that the assessment team reflects.</div>
+        <div class="team-col-qual">Qualification: Domain specific certification experience in the relevant regulated industry. Engaged per assessment based on the system's operational environment.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LEAD ASSESSOR -->
+<!-- WHAT GROUNDS THE FRAMEWORK -->
 <section class="page-section" style="background: var(--white);">
   <div class="section-inner">
-    <div class="assessor-grid">
-      <div class="assessor-text">
-        <div class="section-eyebrow">Lead Assessor</div>
-        <h2 class="section-title">What qualifies<br>the determination.</h2>
-        <p>
-          The SCL framework was not adapted from a governance template. It was built by someone who spent years inside a government human spaceflight program writing the first AI certification requirements for human-rated spacecraft &mdash; requirements that are now part of the governing software standard for crewed space programs.
-        </p>
-        <p>
-          That work produced a <strong>government-issued award for exceptional contribution to human spaceflight</strong> &mdash; recognition that the requirements were consequential enough to matter. The Lead Assessor did not study AI certification from the outside. The requirements were written from inside the operational environment, applied to real vehicles, and reviewed by the program office.
-        </p>
-        <p>
-          Before that, the same practitioner <strong>led a materials engineering lab in automotive manufacturing</strong>, deploying deep learning for automated quality decisions in electric motor production at scale. That experience grounds the assessment methodology in what it means to put AI into a real production system with real safety consequences &mdash; not a research environment.
-        </p>
-        <p>
-          Graduate research at a leading engineering institution contributes active academic grounding in AI safety and certification methodology alongside the practical industry background.
-        </p>
-        <div class="assessor-byline">
-          <div class="assessor-name">K. Williams &mdash; SCL Principal &amp; Lead Assessor</div>
-          <div class="assessor-meta">
-            Graduate Researcher, Artificial Intelligence &middot; University Engineering Program<br>
-            B.S. Mechanical Engineering<br>
-            Government Human Spaceflight AI Certification &middot; Automotive Industry AI Deployment
-          </div>
-        </div>
-        <div class="assessor-links">
-          <a href="https://kevinjwilliams.com" class="assessor-link" target="_blank">Personal site &rarr;</a>
-          <a href="https://github.com/kevinjohnwilliams" class="assessor-link" target="_blank">GitHub &rarr;</a>
-          <a href="https://orcid.org/0009-0002-3308-3415" class="assessor-link" target="_blank">ORCID &rarr;</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="section-eyebrow">Background</div>
-        <div class="exp-timeline">
-          <div class="exp-entry fade-up">
-            <div class="exp-year">2025&ndash;<br>Present</div>
-            <div class="exp-detail">
-              <div class="exp-org">Safety Critical Labs</div>
-              <div class="exp-role">Founder &amp; Lead Assessor</div>
-              <div class="exp-body">Founded to apply the AI certification work developed inside a government human spaceflight program to every domain where AI failure has safety consequences. Developing assessment methodology, evidence package standards, and the institutional infrastructure for a formal AI certification authority.</div>
-              <div class="exp-tags">
-                <span class="exp-tag">AI Certification</span>
-                <span class="exp-tag">Framework Development</span>
-                <span class="exp-tag">Assessment Methodology</span>
-              </div>
-            </div>
-          </div>
-          <div class="exp-entry fade-up">
-            <div class="exp-year">2023&ndash;<br>2025</div>
-            <div class="exp-detail">
-              <div class="exp-org">Government Human Spaceflight Program</div>
-              <div class="exp-role">AI System Engineer</div>
-              <div class="exp-body">Developed the first AI certification requirements for human-rated spacecraft. Requirements integrated into the governing software standard for crewed programs, spanning multiple vehicle programs. Focus on requirements traceability, V&amp;V methodology, and AI-specific failure modes including bias, drift, hallucination, and out-of-distribution behavior.</div>
-              <div class="exp-tags">
-                <span class="exp-tag">AI Safety</span>
-                <span class="exp-tag">V&amp;V</span>
-                <span class="exp-tag">Human Spaceflight</span>
-                <span class="exp-tag">Requirements Engineering</span>
-              </div>
-              <div class="award-pill">&#9733; Government Award &mdash; Exceptional Contribution to Human Spaceflight</div>
-            </div>
-          </div>
-          <div class="exp-entry fade-up">
-            <div class="exp-year">2022&ndash;<br>2023</div>
-            <div class="exp-detail">
-              <div class="exp-org">Automotive Industry &mdash; Electric Vehicle Manufacturing</div>
-              <div class="exp-role">Engineering Specialist, AI Deployment</div>
-              <div class="exp-body">Led engineering lab supporting electric motor manufacturing. Deployed deep learning for automated quality decisions in production, achieving approximately 90% reduction in manual inspection. Established AI integration standards across a live manufacturing line with measurable quality and safety consequences.</div>
-              <div class="exp-tags">
-                <span class="exp-tag">Deep Learning</span>
-                <span class="exp-tag">Manufacturing AI</span>
-                <span class="exp-tag">Quality Systems</span>
-                <span class="exp-tag">Six Sigma Black Belt</span>
-              </div>
-              <div class="award-pill">&#9733; Industry Technical Excellence Award &mdash; AI Quality Systems</div>
-            </div>
-          </div>
-          <div class="exp-entry fade-up">
-            <div class="exp-year">2025&ndash;<br>Present</div>
-            <div class="exp-detail">
-              <div class="exp-org">University Engineering Program</div>
-              <div class="exp-role">Graduate Researcher, Artificial Intelligence</div>
-              <div class="exp-body">Active graduate research in AI safety and machine learning methodology. Peer-reviewed publication record. Academic grounding in the theoretical foundation that underpins the assessment methodology alongside the practical industry background.</div>
-              <div class="exp-tags">
-                <span class="exp-tag">AI Safety Research</span>
-                <span class="exp-tag">Peer Review</span>
-                <span class="exp-tag">ML Methodology</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div style="max-width: 720px;">
+      <div class="section-eyebrow">The standard</div>
+      <h2 class="section-title">Built from inside<br><em>the operational environment.</em></h2>
+      <p style="font-size:17px; color:var(--ink-2); line-height:1.85; font-weight:300; margin-bottom:20px;">
+        The SCL framework was not assembled from policy documents or governance templates. It was developed by practitioners who wrote AI certification requirements for programs where failure had direct consequences for human life, and who deployed AI into live production systems with measurable safety and quality outcomes.
+      </p>
+      <p style="font-size:17px; color:var(--ink-2); line-height:1.85; font-weight:300;">
+        That foundation is what the framework reflects. Not a theory of what AI certification should look like, but a working knowledge of what it actually requires when the stakes are real.
+      </p>
     </div>
   </div>
 </section>
-
-<!-- RECOGNITION -->
-<div class="recognition-band">
-  <div class="recognition-inner">
-    <div class="section-eyebrow" style="color:rgba(255,255,255,0.3)"><span style="display:inline-block;width:14px;height:1px;background:rgba(255,255,255,0.3);margin-right:10px;vertical-align:middle;"></span>Recognition</div>
-    <h2 class="section-title" style="color:#fff;">Credentials that ground<br><em>the standard.</em></h2>
-    <div class="recognition-grid">
-      <div class="rec-card fade-up">
-        <div class="rec-icon">&#11088;</div>
-        <div>
-          <div class="rec-org">Government Human Spaceflight Program</div>
-          <div class="rec-name">Award for Exceptional Contribution to Human Spaceflight</div>
-          <div class="rec-desc">Awarded for the development of AI certification requirements for human-rated spacecraft. These requirements entered the governing software standard for crewed programs and are the direct predecessor of the SCL framework.</div>
-        </div>
-      </div>
-      <div class="rec-card fade-up">
-        <div class="rec-icon">&#11088;</div>
-        <div>
-          <div class="rec-org">Automotive Industry &mdash; Electric Vehicle Manufacturing</div>
-          <div class="rec-name">Technical Excellence Award &mdash; AI Quality Systems</div>
-          <div class="rec-desc">Recognized for the deployment of deep learning for automated quality decisions in electric motor manufacturing at scale. Demonstrated AI applied to real production systems with measurable safety and quality consequences.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- DOMAIN COVERAGE -->
 <section class="page-section" style="background: var(--bg);">
   <div class="section-inner">
     <div class="section-eyebrow">Domain coverage</div>
-    <h2 class="section-title">The framework is domain-agnostic.<br><em>The assessment team is not.</em></h2>
+    <h2 class="section-title">The framework is domain agnostic.<br><em>The assessment team is not.</em></h2>
     <p class="section-lead">The nine requirement areas apply wherever AI failure has safety consequences. Domain specialists are brought in to ensure the assessment reflects the specific regulatory environment your system operates in.</p>
     <div class="domain-grid">
       <div class="domain-card fade-up">
-        <span class="domain-icon">&#128760;</span>
         <div class="domain-title">Aerospace &amp; Defense</div>
         <div class="domain-regs">NPR 7150.2D &middot; DO-178C &middot; MIL-STD</div>
         <div class="domain-desc">Human spaceflight, autonomous vehicles, launch systems. The original environment that shaped the framework. Lead Assessor background is deepest here.</div>
       </div>
       <div class="domain-card fade-up">
-        <span class="domain-icon">&#9992;</span>
         <div class="domain-title">Aviation</div>
         <div class="domain-regs">DO-178C &middot; DO-254 &middot; FAA AI Policy</div>
         <div class="domain-desc">AI in flight management, air traffic support, and autonomous aircraft systems. Domain specialist coverage for FAA certification pathway alignment.</div>
       </div>
       <div class="domain-card fade-up">
-        <span class="domain-icon">&#9877;</span>
         <div class="domain-title">Medical Devices</div>
         <div class="domain-regs">FDA SaMD &middot; ISO 13485 &middot; IEC 62304</div>
         <div class="domain-desc">AI in clinical decision support, diagnostics, and therapeutic devices. Domain specialist coverage for FDA Software as a Medical Device framework alignment.</div>
       </div>
       <div class="domain-card fade-up">
-        <span class="domain-icon">&#128663;</span>
         <div class="domain-title">Automotive</div>
         <div class="domain-regs">ISO 26262 &middot; SOTIF &middot; ISO/SAE 21434</div>
         <div class="domain-desc">AI in ADAS, autonomous driving, and production quality systems. Lead Assessor has direct deployment experience in automotive AI at scale.</div>
@@ -451,35 +797,35 @@
   </div>
 </section>
 
-<!-- WHY THIS MATTERS -->
+<!-- THE INSTITUTION -->
 <div class="credibility-band">
   <div class="cred-inner">
     <div class="cred-left">
-      <div class="section-eyebrow" style="color:rgba(200,39,45,0.6)"><span style="display:inline-block;width:14px;height:1px;background:rgba(200,39,45,0.5);margin-right:10px;vertical-align:middle;"></span>The institution</div>
-      <h2>Authority transfers<br>from person to institution.</h2>
+      <div class="section-eyebrow" style="color:rgba(200,39,45,0.6)">The institution</div>
+      <h2>Built to become<br>a regulatory instrument.</h2>
       <p>
-        SCL is at an early stage where the determination record rests on the Lead Assessor's direct credentials. That is enough to support the first customers and establish the first certification records.
+        SCL is not a consulting practice that happens to review AI systems. It is being built as a formal certification authority, with the structure, independence, and transparency that role requires.
       </p>
       <p>
-        The long-term goal is to transfer that credibility from the individual to the institution: through a formal advisory structure, regulatory engagement, published certification records, and a path toward accreditation under ISO/IEC 17065 for certification bodies.
+        The framework is practitioner built, the assessment process is structurally independent, and the certification record is designed to hold up under regulatory scrutiny. Every element of how SCL operates is oriented toward that standard.
       </p>
     </div>
     <div class="cred-items">
       <div class="cred-item fade-up">
-        <span class="cred-bullet">&#9670;</span>
-        <span class="cred-text"><strong>Practitioner-built standard.</strong> Requirements developed from inside the operational environment, not adapted from governance templates by people who have never worked in safety-critical systems.</span>
+        <span class="cred-bullet"></span>
+        <span class="cred-text"><strong>Practitioner built standard.</strong> Requirements developed from inside the operational environment, not adapted from governance templates by people who have never worked in safety critical systems.</span>
       </div>
       <div class="cred-item fade-up">
-        <span class="cred-bullet">&#9670;</span>
+        <span class="cred-bullet"></span>
         <span class="cred-text"><strong>Open and auditable.</strong> The framework is publicly available. Anyone can read the standard before engaging SCL. The assessor who wrote it is the assessor conducting the certification.</span>
       </div>
       <div class="cred-item fade-up">
-        <span class="cred-bullet">&#9670;</span>
-        <span class="cred-text"><strong>Regulatory presence.</strong> Active engagement with AI policy processes as they develop across FAA, FDA, and defense acquisition. First-mover certification records are how standards get adopted.</span>
+        <span class="cred-bullet"></span>
+        <span class="cred-text"><strong>Regulatory engagement.</strong> Active participation in AI policy development across FAA, FDA, and defense acquisition. Certification records established now are how standards gain traction.</span>
       </div>
       <div class="cred-item fade-up">
-        <span class="cred-bullet">&#9670;</span>
-        <span class="cred-text"><strong>Accreditation path.</strong> ISO/IEC 17065 gap assessment is on the roadmap. The goal is a regulatory instrument, not just a credible third party.</span>
+        <span class="cred-bullet"></span>
+        <span class="cred-text"><strong>Accreditation path.</strong> SCL is structured toward ISO/IEC 17065 accreditation for certification bodies. The goal is a recognized regulatory instrument, with the institutional infrastructure to match.</span>
       </div>
     </div>
   </div>

@@ -2,15 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="shortcut icon" href="favicon.svg">
-<meta name="theme-color" content="#111110">
-<meta name="description" content="SCL certifies AI wherever failure has safety consequences. Aerospace, aviation, medical devices, and automotive.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Markets — Safety Critical Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <style>
 /* ─── MARKET DETAIL BLOCKS ────────────────────────────────── */
 .market-block {
@@ -171,22 +168,22 @@
         <div class="market-seq">Primary market</div>
         <span class="market-icon-lg">&#128760;</span>
         <div class="market-name">Aerospace &amp; Defense</div>
-        <div class="market-timeline">Where we were built</div>
+        <div class="market-timeline">Where the framework was built</div>
         <div class="market-regulators">
           <span class="regulator-tag">NASA</span>
           <span class="regulator-tag">DoD</span>
-          <span class="regulator-tag">SpaceX</span>
-          <span class="regulator-tag">Blue Origin</span>
-          <span class="regulator-tag">Boeing</span>
-          <span class="regulator-tag">Lockheed</span>
+          <span class="regulator-tag">NPR 7150.2D</span>
+          <span class="regulator-tag">NASA-STD-8739.8</span>
+          <span class="regulator-tag">MIL-STD</span>
         </div>
       </div>
       <div class="market-content">
+        <p class="market-body" style="font-size:14px;color:var(--ink-3);margin-bottom:16px;font-weight:400;">If you are building or deploying AI on human-rated spacecraft, autonomous defense systems, launch vehicles, or crew-support platforms, this is the market the SCL framework was written for.</p>
         <p class="market-body">
-          AI systems are being evaluated for autonomous crew support, anomaly detection, and mission decision assistance on vehicles carrying astronauts. The AI certification framework that became Safety Critical Labs was written from <strong>inside NASA JSC</strong> to address exactly this problem &mdash; for Artemis and commercial crew vehicles.
+          AI systems are being evaluated for autonomous crew support, anomaly detection, and mission decision assistance on vehicles carrying astronauts. The SCL framework was developed from <strong>inside a government human spaceflight program</strong> to address exactly this problem &mdash; for crewed vehicles where the consequence of an incorrect AI output cannot be undone.
         </p>
         <p class="market-body">
-          <strong>No AI-specific certification path currently exists</strong> for human-rated spacecraft. NPR 7150.2D governs software on human spaceflight vehicles. The AI requirements developed at NASA JSC are a direct response to that gap &mdash; and the SCL framework is the continuation of that work in the commercial and defense sectors.
+          <strong>No AI-specific certification path currently exists</strong> for human-rated spacecraft. The governing software standard covers deterministic systems. The AI requirements developed inside the spaceflight program are a direct response to that gap &mdash; and the SCL framework is the continuation of that work in the commercial and defense sectors.
         </p>
         <div class="market-gaps">
           <div class="market-gap fade-up">
@@ -222,6 +219,7 @@
         </div>
       </div>
       <div class="market-content">
+        <p class="market-body" style="font-size:14px;color:var(--ink-3);margin-bottom:16px;font-weight:400;">If you are an avionics supplier, aircraft OEM, or air traffic management provider deploying AI in certified airspace, the regulatory window to establish a certification record is open now.</p>
         <p class="market-body">
           The FAA has explicitly acknowledged in its AI Safety Roadmap that it lacks standards for AI in aviation. <strong>Certification frameworks that exist before regulation arrives become the regulation.</strong> First movers write the requirements.
         </p>
@@ -261,6 +259,7 @@
         </div>
       </div>
       <div class="market-content">
+        <p class="market-body" style="font-size:14px;color:var(--ink-3);margin-bottom:16px;font-weight:400;">If you are a medical device manufacturer, clinical AI developer, or health system deploying AI in diagnostic, therapeutic, or patient monitoring applications, the SaMD regulatory environment is moving faster than most organizations are prepared for.</p>
         <p class="market-body">
           FDA's Software as a Medical Device framework is evolving rapidly to address AI and ML in clinical decision support, diagnostic imaging, and patient monitoring. <strong>AI-specific validation requirements remain underspecified</strong> &mdash; organizations that establish certification records now will hold lasting regulatory position as FDA's requirements solidify.
         </p>
@@ -301,6 +300,7 @@
         </div>
       </div>
       <div class="market-content">
+        <p class="market-body" style="font-size:14px;color:var(--ink-3);margin-bottom:16px;font-weight:400;">If you are an automotive OEM, Tier 1 supplier, or ADAS developer working with neural network-based systems in safety-relevant vehicle functions, the gap between what ISO 26262 requires and what your AI system actually does is not theoretical.</p>
         <p class="market-body">
           ISO 26262 defines functional safety requirements for automotive electrical and electronic systems. ISO 21448 (SOTIF) addresses safety of the intended functionality. <strong>Neither was designed for the probabilistic, distributional behavioral characteristics of neural network-based systems</strong> operating in the open-world conditions of public road environments.
         </p>
@@ -400,7 +400,7 @@
     <li><a href="markets.html">Markets</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <div class="footer-meta">Framework v1.0 &middot; Est. 2025<br>safetycriticallabs.io</div>
+  <div class="footer-meta">Framework v1.0 &middot; Est. 2025<br>safetycriticallabs.com</div>
 </footer>
 
 <script>

@@ -44,22 +44,22 @@ body {
 .global-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   height: 56px;
-  background: var(--ink);
+  background: var(--white);
   display: flex; align-items: center;
   padding: 0 40px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid var(--rule);
 }
 
 .gn-wordmark {
   display: flex; align-items: center; gap: 10px;
-  text-decoration: none; color: #fff; flex-shrink: 0;
+  text-decoration: none; color: var(--ink); flex-shrink: 0;
 }
 
 .gn-icon { width: 26px; height: 26px; }
 
 .gn-text {
   font-family: var(--mono); font-size: 12px;
-  font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #fff;
+  font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
 }
 .gn-text em { color: var(--red); font-style: normal; }
 
@@ -71,12 +71,12 @@ body {
 .gn-links a {
   font-family: var(--mono); font-size: 10px;
   letter-spacing: 0.1em; text-transform: uppercase;
-  color: rgba(255,255,255,0.4); text-decoration: none;
+  color: var(--ink-3); text-decoration: none;
   padding: 6px 12px; border-radius: 2px;
   transition: color 0.15s, background 0.15s;
 }
-.gn-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
-.gn-links a.active { color: #fff; }
+.gn-links a:hover { color: var(--ink); background: var(--bg); }
+.gn-links a.active { color: var(--ink); }
 
 .gn-cta {
   background: var(--red) !important;
@@ -93,9 +93,9 @@ body {
 
 /* ─── INNER PAGE HERO ─────────────────────────────────────── */
 .inner-hero {
-  background: var(--ink);
+  background: var(--bg);
   padding: 72px 40px 64px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid var(--rule);
   position: relative; overflow: hidden;
 }
 
@@ -111,25 +111,25 @@ body {
 .inner-hero-breadcrumb {
   font-family: var(--mono); font-size: 10px;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(255,255,255,0.3); margin-bottom: 12px;
+  color: var(--ink-3); margin-bottom: 12px;
   display: flex; align-items: center; gap: 8px;
 }
-.inner-hero-breadcrumb a { color: rgba(255,255,255,0.3); text-decoration: none; }
-.inner-hero-breadcrumb a:hover { color: rgba(255,255,255,0.6); }
-.inner-hero-breadcrumb span { color: rgba(255,255,255,0.15); }
+.inner-hero-breadcrumb a { color: var(--ink-3); text-decoration: none; }
+.inner-hero-breadcrumb a:hover { color: var(--ink-2); }
+.inner-hero-breadcrumb span { color: var(--rule); }
 
 .inner-hero h1 {
   font-family: var(--serif);
   font-size: clamp(38px, 4.5vw, 60px);
   font-weight: 400; line-height: 1.1;
-  color: #fff; letter-spacing: -0.01em;
+  color: var(--ink); letter-spacing: -0.01em;
 }
 .inner-hero h1 em { font-style: italic; color: var(--red); }
 
 .inner-hero-lead {
-  font-size: 17px; color: rgba(255,255,255,0.5);
+  font-size: 17px; color: var(--ink-2);
   font-weight: 300; line-height: 1.75;
-  border-left: 2px solid var(--red); padding-left: 20px;
+  border-left: 2px solid var(--rule); padding-left: 20px;
   align-self: end;
 }
 
@@ -808,10 +808,10 @@ h2.section-title em { font-style: italic; color: var(--red); }
 <nav class="global-nav">
   <a href="index.html" class="gn-wordmark">
     <svg class="gn-icon" viewBox="0 0 26 26" fill="none">
-      <rect x="1" y="1" width="24" height="24" rx="2" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+      <rect x="1" y="1" width="24" height="24" rx="2" stroke="var(--rule)" stroke-width="1.5"/>
       <line x1="6" y1="13" x2="20" y2="13" stroke="#C8272D" stroke-width="1.5"/>
       <line x1="13" y1="6" x2="13" y2="20" stroke="#C8272D" stroke-width="1.5"/>
-      <circle cx="13" cy="13" r="2.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+      <circle cx="13" cy="13" r="2.5" stroke="var(--rule)" stroke-width="1.5"/>
     </svg>
     <span class="gn-text"><em>Safety Critical</em> Labs</span>
   </a>
@@ -923,7 +923,7 @@ h2.section-title em { font-style: italic; color: var(--red); }
 <div class="credibility-band">
   <div class="cred-inner">
     <div class="cred-left">
-      <div class="section-eyebrow" style="color:rgba(200,39,45,0.6)"><span style="display:inline-block;width:14px;height:1px;background:rgba(200,39,45,0.5);margin-right:10px;vertical-align:middle;"></span>The institution</div>
+      <div class="section-eyebrow">The institution</div>
       <h2>Built to become<br>a regulatory instrument.</h2>
       <p>
         SCL is not a consulting practice that happens to review AI systems. It is being built as a formal certification authority, with the structure, independence, and transparency that role requires.

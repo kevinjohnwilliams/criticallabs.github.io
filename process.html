@@ -43,19 +43,19 @@ body {
 .global-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   height: 56px;
-  background: var(--ink);
+  background: var(--white);
   display: flex; align-items: center;
   padding: 0 40px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid var(--rule);
 }
 .gn-wordmark {
   display: flex; align-items: center; gap: 10px;
-  text-decoration: none; color: #fff; flex-shrink: 0;
+  text-decoration: none; color: var(--ink); flex-shrink: 0;
 }
 .gn-icon { width: 26px; height: 26px; }
 .gn-text {
   font-family: var(--mono); font-size: 12px;
-  font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #fff;
+  font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
 }
 .gn-text em { color: var(--red); font-style: normal; }
 .gn-links {
@@ -65,12 +65,12 @@ body {
 .gn-links a {
   font-family: var(--mono); font-size: 10px;
   letter-spacing: 0.1em; text-transform: uppercase;
-  color: rgba(255,255,255,0.4); text-decoration: none;
+  color: var(--ink-3); text-decoration: none;
   padding: 6px 12px; border-radius: 2px;
   transition: color 0.15s, background 0.15s;
 }
-.gn-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
-.gn-links a.active { color: #fff; }
+.gn-links a:hover { color: var(--ink); background: var(--bg); }
+.gn-links a.active { color: var(--ink); }
 .gn-cta {
   background: var(--red) !important;
   color: #fff !important;
@@ -86,9 +86,9 @@ body {
 
 /* INNER PAGE HERO */
 .inner-hero {
-  background: var(--ink);
+  background: var(--bg);
   padding: 72px 40px 64px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid var(--rule);
   position: relative; overflow: hidden;
 }
 .inner-hero::before { display: none; }
@@ -99,23 +99,23 @@ body {
 .inner-hero-breadcrumb {
   font-family: var(--mono); font-size: 10px;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(255,255,255,0.3); margin-bottom: 12px;
+  color: var(--ink-3); margin-bottom: 12px;
   display: flex; align-items: center; gap: 8px;
 }
-.inner-hero-breadcrumb a { color: rgba(255,255,255,0.3); text-decoration: none; }
-.inner-hero-breadcrumb a:hover { color: rgba(255,255,255,0.6); }
-.inner-hero-breadcrumb span { color: rgba(255,255,255,0.15); }
+.inner-hero-breadcrumb a { color: var(--ink-3); text-decoration: none; }
+.inner-hero-breadcrumb a:hover { color: var(--ink-2); }
+.inner-hero-breadcrumb span { color: var(--rule); }
 .inner-hero h1 {
   font-family: var(--serif);
   font-size: clamp(38px, 4.5vw, 60px);
   font-weight: 400; line-height: 1.1;
-  color: #fff; letter-spacing: -0.01em;
+  color: var(--ink); letter-spacing: -0.01em;
 }
 .inner-hero h1 em { font-style: italic; color: var(--red); }
 .inner-hero-lead {
-  font-size: 17px; color: rgba(255,255,255,0.5);
+  font-size: 17px; color: var(--ink-2);
   font-weight: 300; line-height: 1.75;
-  border-left: 2px solid var(--red); padding-left: 20px;
+  border-left: 2px solid var(--rule); padding-left: 20px;
   align-self: end;
 }
 
@@ -291,12 +291,11 @@ h2.section-title em { font-style: italic; color: var(--red); }
 .check-item.check-item-score .check-text strong { color: var(--red-dk); }
 
 /* TIMELINE STRIP */
-.timeline-section { background: var(--ink); padding: 80px 40px; }
+.timeline-section { background: var(--white); padding: 80px 40px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 .timeline-inner { max-width: 1140px; margin: 0 auto; }
-.timeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px; }
+.timeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 48px; background: var(--rule); border: 1px solid var(--rule); }
 .tl-block {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--white);
   padding: 28px 24px;
   position: relative;
 }
@@ -305,30 +304,30 @@ h2.section-title em { font-style: italic; color: var(--red); }
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--red); margin-bottom: 10px;
 }
-.tl-title { font-size: 15px; font-weight: 500; color: #fff; margin-bottom: 8px; line-height: 1.3; }
+.tl-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
 .tl-duration {
   font-family: var(--mono); font-size: 11px;
-  color: rgba(255,255,255,0.35); margin-bottom: 14px;
+  color: var(--ink-3); margin-bottom: 14px;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid var(--rule);
 }
-.tl-output { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
-.tl-output strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+.tl-output { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.tl-output strong { color: var(--ink); font-weight: 500; }
 .tl-total {
   margin-top: 20px;
   display: flex; align-items: center; gap: 16px;
   padding: 20px 24px;
-  background: rgba(200,39,45,0.08);
-  border: 1px solid rgba(200,39,45,0.2);
+  background: var(--bg);
+  border: 1px solid var(--rule);
   border-radius: 3px;
 }
-.tl-total-num { font-family: var(--serif); font-size: 36px; color: #fff; line-height: 1; flex-shrink: 0; }
+.tl-total-num { font-family: var(--serif); font-size: 36px; color: var(--ink); line-height: 1; flex-shrink: 0; }
 .tl-total-num em { color: var(--red); font-style: normal; }
-.tl-total-label { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
-.tl-total-label strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+.tl-total-label { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.tl-total-label strong { color: var(--ink); font-weight: 500; }
 
 /* WHAT YOU GET SECTION */
-.outputs-section { background: var(--ink); padding: 80px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
+.outputs-section { background: var(--bg); padding: 80px 40px; border-top: 1px solid var(--rule); }
 .outputs-inner { max-width: 1140px; margin: 0 auto; }
 
 .outputs-layout {
@@ -339,22 +338,22 @@ h2.section-title em { font-style: italic; color: var(--red); }
 .outputs-grid { display: flex; flex-direction: column; gap: 2px; }
 
 .output-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--white);
+  border: 1px solid var(--rule);
   padding: 22px 20px;
 }
 .output-card.output-card-primary {
-  background: rgba(200,39,45,0.07);
-  border-color: rgba(200,39,45,0.25);
+  background: var(--red-lt);
+  border-color: rgba(200,39,45,0.2);
 }
 .output-card-label {
   font-family: var(--mono); font-size: 9px;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--red); margin-bottom: 10px;
 }
-.output-card-title { font-size: 15px; font-weight: 500; color: #fff; margin-bottom: 8px; line-height: 1.3; }
-.output-card-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; }
-.output-card-desc strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+.output-card-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+.output-card-desc { font-size: 13px; color: var(--ink-2); line-height: 1.7; }
+.output-card-desc strong { color: var(--ink); font-weight: 500; }
 
 .score-display {
   display: flex; align-items: baseline; gap: 10px;
@@ -362,7 +361,7 @@ h2.section-title em { font-style: italic; color: var(--red); }
 }
 .score-num {
   font-family: var(--serif); font-size: 44px;
-  color: #fff; line-height: 1;
+  color: var(--ink); line-height: 1;
 }
 .score-meta { display: flex; flex-direction: column; gap: 4px; }
 .score-label {
@@ -370,40 +369,40 @@ h2.section-title em { font-style: italic; color: var(--red); }
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--red);
 }
-.score-sub { font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.4; }
+.score-sub { font-size: 11px; color: var(--ink-3); line-height: 1.4; }
 
 .outputs-callout {
   margin-top: 2px;
   padding: 18px 20px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.05);
+  background: var(--white);
+  border: 1px solid var(--rule);
   display: grid; grid-template-columns: 72px 1fr; gap: 16px; align-items: start;
 }
 .oc-label {
   font-family: var(--mono); font-size: 9px;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(255,255,255,0.2); line-height: 1.6;
+  color: var(--ink-3); line-height: 1.6;
 }
-.oc-text { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; }
-.oc-text strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+.oc-text { font-size: 13px; color: var(--ink-2); line-height: 1.7; }
+.oc-text strong { color: var(--ink); font-weight: 500; }
 
 /* CERTIFICATE PREVIEW */
 .cert-preview-col { position: sticky; top: 72px; }
 .cert-preview-label {
   font-family: var(--mono); font-size: 9px;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(255,255,255,0.2); margin-bottom: 12px;
+  color: var(--ink-3); margin-bottom: 12px;
   display: flex; align-items: center; gap: 8px;
 }
 .cert-preview-label::before {
   content: ''; display: inline-block;
-  width: 14px; height: 1px; background: rgba(255,255,255,0.2);
+  width: 14px; height: 1px; background: var(--ink-3);
 }
 .cert-preview-frame {
   width: 100%; overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid var(--rule);
   background: #faf9f6;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 .cert-preview-frame iframe {
   width: 860px; height: 1060px;
@@ -440,8 +439,8 @@ h2.section-title em { font-style: italic; color: var(--red); }
 /* INLINE SURVEILLANCE */
 .surv-inline { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
 .surv-inline-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--bg);
+  border: 1px solid var(--rule);
   border-radius: 3px; padding: 14px 18px;
   display: grid; grid-template-columns: 140px 1fr; gap: 14px;
 }
@@ -450,8 +449,8 @@ h2.section-title em { font-style: italic; color: var(--red); }
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--red);
   padding-top: 2px;
 }
-.si-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.55; }
-.si-desc strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+.si-desc { font-size: 13px; color: var(--ink-2); line-height: 1.55; }
+.si-desc strong { color: var(--ink); font-weight: 500; }
 
 /* RESPONSIVE */
 @media (max-width: 880px) {
@@ -485,10 +484,10 @@ h2.section-title em { font-style: italic; color: var(--red); }
 <nav class="global-nav">
   <a href="index.html" class="gn-wordmark">
     <svg class="gn-icon" viewBox="0 0 26 26" fill="none">
-      <rect x="1" y="1" width="24" height="24" rx="2" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+      <rect x="1" y="1" width="24" height="24" rx="2" stroke="var(--rule)" stroke-width="1.5"/>
       <line x1="6" y1="13" x2="20" y2="13" stroke="#C8272D" stroke-width="1.5"/>
       <line x1="13" y1="6" x2="13" y2="20" stroke="#C8272D" stroke-width="1.5"/>
-      <circle cx="13" cy="13" r="2.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+      <circle cx="13" cy="13" r="2.5" stroke="var(--rule)" stroke-width="1.5"/>
     </svg>
     <span class="gn-text"><em>Safety Critical</em> Labs</span>
   </a>
@@ -700,9 +699,9 @@ h2.section-title em { font-style: italic; color: var(--red); }
 <!-- WHAT THE ASSESSMENT PRODUCES -->
 <div class="outputs-section">
   <div class="outputs-inner">
-    <div class="section-eyebrow" style="color:rgba(255,255,255,0.3)"><span style="display:inline-block;width:14px;height:1px;background:rgba(255,255,255,0.3);margin-right:10px;vertical-align:middle;"></span>What the assessment produces</div>
-    <h2 class="section-title" style="color:#fff;">Two things most audits<br><em>never give you.</em></h2>
-    <p style="font-size:16px;color:rgba(255,255,255,0.4);font-weight:300;line-height:1.75;max-width:580px;margin-bottom:0;">
+    <div class="section-eyebrow">What the assessment produces</div>
+    <h2 class="section-title">Two things most audits<br><em>never give you.</em></h2>
+    <p style="font-size:16px;color:var(--ink-2);font-weight:300;line-height:1.75;max-width:580px;margin-bottom:0;">
       A certification determination tells you whether your system met the standard. A risk score tells you where it sits on the risk spectrum. Together they give your team something to act on and something to show.
     </p>
     <div class="outputs-layout">
@@ -753,9 +752,9 @@ h2.section-title em { font-style: italic; color: var(--red); }
 <!-- TIMELINE -->
 <div class="timeline-section">
   <div class="timeline-inner">
-    <div class="section-eyebrow" style="color:rgba(255,255,255,0.3)"><span style="display:inline-block;width:14px;height:1px;background:rgba(255,255,255,0.3);margin-right:10px;vertical-align:middle;"></span>Assessment timeline</div>
-    <h2 class="section-title" style="color:#fff;">Six to ten weeks,<br><em>start to certificate.</em></h2>
-    <p style="font-size:16px;color:rgba(255,255,255,0.4);font-weight:300;line-height:1.75;max-width:560px;margin-top:0;">
+    <div class="section-eyebrow">Assessment timeline</div>
+    <h2 class="section-title">Six to ten weeks,<br><em>start to certificate.</em></h2>
+    <p style="font-size:16px;color:var(--ink-2);font-weight:300;line-height:1.75;max-width:560px;margin-top:0;">
       Timeline assumes a complete evidence package submitted on time with no major clarification rounds. Complex Safety-Critical systems may take longer. Every phase has a defined output before the next begins.
     </p>
     <div class="timeline-grid">
